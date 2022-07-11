@@ -1,0 +1,6 @@
+body{
+  font-family: var(--roboto);
+
+  background: rgb(250,250,250);
+  background: linear-gradient(0deg, rgba(250,250,250,1) 0%, rgba(208,221,239,1) 50%, rgba(250,250,250,1) 100%);
+}
