@@ -34,6 +34,26 @@
   background-position: 5%;
 }
 
+.terms__container{
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: .5rem;
+}
+
+.terms__checkbox{
+
+}
+
+.terms__text{
+  color: var(--darkGray);
+  font-size: .8rem;
+}
+
+.terms__link{
+  color: #0000EE;
+}
+
 .login__button{
   margin-top: 2rem;
   margin-bottom: 1.5rem;
