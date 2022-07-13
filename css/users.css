@@ -1,0 +1,68 @@
+body{
+  background: var(--bg05);
+}
+
+.user__info__container{
+  box-sizing: border-box;
+  background-color: var(--bg03);
+
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  justify-content: space-evenly;
+}
+
+.user__image{
+  width: 20%;
+  border: solid var(--green) 2px;
+  border-radius: 20px;
+  padding: .2rem;
+}
+
+.user__info{
+  width: 80%;
+}
+
+.user__info__name{
+  color: var(--darkGray);
+  display: inline-block;
+  line-height: 2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.header__config{
+  position: absolute;
+  right: 1.5rem;
+  vertical-align: middle;
+}
+
+.user__info__status{
+  color: var(--green);
+}
+
+.user__info__status::before{
+  content: '(';
+}
+.user__info__status::after{
+  content: ')';
+}
+
+.user__info__message{
+  background-color: white;
+  border-radius: 40px;
+
+  color: var(--darkGray);
+  font-size: .8rem;
+  font-weight: 300;
+
+
+  margin-top: .5rem;
+  padding: .2rem .3rem;
+  width: 100%;
+}
+
+.user__info__message::placeholder{
+  color: var(--darkGray);
+  text-align: center;
+}
