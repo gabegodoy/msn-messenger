@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/newUser.css">
 
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
 </head>
@@ -31,15 +30,17 @@
     <div class="home__login sign__info">
       <img src="assets/images/msn_user_23326.png" alt="black avatar image" class="sign__avatar">
       <h1 class="sign__tittle">Sign Up</h1>
-      <input type="text" class="sign__firstName" placeholder="First Name">
-      <input type="text" class="sign__lastName" placeholder="Last Name">
-      <input type="email" class="sign__mail" placeholder="E-mail">
-      <input type="text" class="sign__username" placeholder="Username">
-      <input type="password" class="sign__password" placeholder="Password">
-      
-      
-      
-      <button class="login__button">Create Account</button>
+
+     <form action="" method="post" class="form__container">
+
+        <input type="text" class=" login__input sign__firstName" placeholder="First Name">
+        <input type="text" class=" login__input sign__lastName" placeholder="Last Name">
+        <input type="email" class=" login__input sign__mail" placeholder="E-mail">
+        <input type="text" class=" login__input login__user sign__username" placeholder="Username">
+        <input type="password" class=" login__input login__password sign__password" placeholder="Password">
+        <input class="login__button" type="submit" value="Create Account">
+
+      </form>    
     </div>
     
   </main>

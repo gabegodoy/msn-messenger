@@ -1,5 +1,13 @@
-.home__login input{
+.login__input{
   margin-top: 1rem;
+}
+
+.sign__info{
+  margin-top: 5vh;
+}
+
+.sign__avatar{
+  max-width: 60%;
 }
 
 .sign__tittle{
@@ -9,26 +17,24 @@
   font-weight: 500;
 }
 
-.sign__avatar{
-  max-width: 60%;
-}
 
-.sign__firstName{
-  
-}
-
-.sign__lastName{
-
+.sign__firstName, .sign__lastName{
+  margin-top: 1rem;
+  background-image: url(../assets/icons/name--icon.svg);
+  background-size: 1.5rem;
+  background-repeat: no-repeat;
+  background-position: 5%;  
 }
 
 .sign__mail{
-  
+  margin-top: 1rem;
+  background-image: url(../assets/icons/mail--icon.svg);
+  background-size: 1.5rem;
+  background-repeat: no-repeat;
+  background-position: 5%;
 }
 
-.sign__username{
-
-}
-
-.sign__password{
-
+.login__button{
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
 }
