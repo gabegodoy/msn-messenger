@@ -1,0 +1,34 @@
+.home__login input{
+  margin-top: 1rem;
+}
+
+.sign__tittle{
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--darkGray);
+  font-weight: 500;
+}
+
+.sign__avatar{
+  max-width: 60%;
+}
+
+.sign__firstName{
+  
+}
+
+.sign__lastName{
+
+}
+
+.sign__mail{
+  
+}
+
+.sign__username{
+
+}
+
+.sign__password{
+
+}
