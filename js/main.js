@@ -8,7 +8,7 @@ loginButton.addEventListener('click', () => {
   
   //let alertMessageLogin = document.querySelector('.alert__message'); 
   //loginContainer.removeChild(alertMessageLogin)
-
+  
   if (loginUsername.value === ""){
     loginContainer.insertBefore(newP, loginUsername.nextSibling)
     newP.innerText = "Can't be blank"
@@ -21,8 +21,40 @@ loginButton.addEventListener('click', () => {
     newP.classList.add('alert__message')
   }
   
-  
+  if (loginUsername.value !== "" && loginPassword.value !== ""){
+    validateUser(loginUsername.value, loginPassword.value)
+    //LOADING SCREEN
+  }
 })
+
+
+/* VALIDATE AND SET USER INFO ON HEADER */
+const userName = document.querySelector('#userName');
+const userImage = document.querySelector('#userImage');
+const userStatus = document.querySelector('#userStatus');
+const userMessage = document.querySelector('#userMessage');
+
+function validateUser (username, password){
+  const options = {
+    method: 'POST',
+    mode: 'cors',
+    //cache: 'defaut'
+  }
+
+  fetch('localhost:3333/users/authenticate', options)
+  
+  .then((reponse) => {reponse.json()
+    .then(data => {
+      console.log(data)
+      window.location.replace('users.html')
+      userName.innerHTML(data.firstName + ' ' + data.lastName)    
+    }) })
+
+    .catch(e => console.log('Error' + e)) //Print on Login Screen
+  }
+
+
+
 
 
 
@@ -50,11 +82,6 @@ categoryArrow.forEach((element) => {
 });
 
 
-/* SET USER INFO ON HEADER */
-const userName = document.querySelector('#userName');
-const userImage = document.querySelector('#userImage');
-const userStatus = document.querySelector('#userStatus');
-const userMessage = document.querySelector('#userMessage');
 
 
 
