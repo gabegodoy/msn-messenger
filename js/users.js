@@ -1,3 +1,6 @@
+//import tryHard from './main.js'
+//console.log('./main.js')
+
 var socket = io("http://localhost:3333/");
 
 onload = async function(){
@@ -34,7 +37,7 @@ categoryArrow.forEach((element) => {
 });
 
 /* CREATE ONLINE USERS */
-const onlineUsersList = document.querySelector('#onlineUsersList')
+const offlineUsersList = document.querySelector('#offlineUsersList')
 let newDiv = document.createElement('div');
 let newP = document.createElement('p');
 let newImg = document.createElement('img');
@@ -42,7 +45,7 @@ let newImg = document.createElement('img');
 function createContact (name, surname, status, message){
   let image = 'assets/images/default-user-profile.png';
 
-  setDiv(onlineUsersList, 'contact__info__container')
+  setDiv(offlineUsersList, 'contact__info__container')
   setImage(newDiv, image)
   setDiv(newDiv, 'contact__info')
   setName(newDiv, name, surname)
@@ -84,13 +87,6 @@ function setMessage (parent, message){
   newP.textContent = message
 }
 
-/* Your password must include a minimum of three of the following mix of character types: uppercase, lowercase, numbers, and ! @ # $ % ^ & * () <> [] {} | _+-= symbols.
-
-The passwords don't match.
-
-top || Wrong email or password.
-
-*/
 
 function getUsers(){
     return fetch('http://localhost:3333/users')

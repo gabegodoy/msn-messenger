@@ -92,7 +92,7 @@ body{
   font-weight: 500;
 }
 
-.contacts__category__tittle::before{
+.contacts__category__tittle--favourite::before{
   content: '';
   background-image: url(../assets/images/star.png);
   background-size: 1rem;
