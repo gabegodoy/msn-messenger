@@ -1,3 +1,32 @@
+/* LOGIN CHECK */
+const loginUsername = document.querySelector('#loginUsername');
+const loginPassword = document.querySelector('#loginPassword');
+const loginButton = document.querySelector('#loginButton');
+const loginContainer = document.querySelector('.form__container')
+
+loginButton.addEventListener('click', () => {
+  
+  //let alertMessageLogin = document.querySelector('.alert__message'); 
+  //loginContainer.removeChild(alertMessageLogin)
+
+  if (loginUsername.value === ""){
+    loginContainer.insertBefore(newP, loginUsername.nextSibling)
+    newP.innerText = "Can't be blank"
+    newP.classList.add('alert__message')
+  }
+  
+  if (loginPassword.value === ""){
+    loginContainer.insertBefore(newP, loginPassword.nextSibling)
+    newP.innerText = "Can't be blank"
+    newP.classList.add('alert__message')
+  }
+  
+  
+})
+
+
+
+/* ARROW SHOW/HIDE CATEGORY */
 let categoryArrow = document.querySelectorAll('#categoryArrow');
 categoryArrow.forEach((element) => {
 
@@ -20,6 +49,16 @@ categoryArrow.forEach((element) => {
   
 });
 
+
+/* SET USER INFO ON HEADER */
+const userName = document.querySelector('#userName');
+const userImage = document.querySelector('#userImage');
+const userStatus = document.querySelector('#userStatus');
+const userMessage = document.querySelector('#userMessage');
+
+
+
+/* CREATE ONLINE USERS */
 const onlineUsersList = document.querySelector('#onlineUsersList')
 let newDiv = document.createElement('div');
 let newP = document.createElement('p');
@@ -73,4 +112,7 @@ function setMessage (parent, message){
 /* Your password must include a minimum of three of the following mix of character types: uppercase, lowercase, numbers, and ! @ # $ % ^ & * () <> [] {} | _+-= symbols.
 
 The passwords don't match.
+
+top || Wrong email or password.
+
 */
