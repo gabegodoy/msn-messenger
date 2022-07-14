@@ -58,6 +58,33 @@ function validateUser (username, password){
 
 
 
+/* CREATE NEW ACCOUNT */
+const signFirstName = document.querySelector('#signFirstName');
+const signLastName = document.querySelector('#signLastName');
+const signMail = document.querySelector('#signMail');
+const signUsername = document.querySelector('#signUsername');
+const signPassword = document.querySelector('#signPassword');
+const signPasswordConfirm = document.querySelector('#signPasswordConfirm');  
+const signButton = document.querySelector('#signButton')
+const signInputs = document.querySelectorAll('.sign__input');
+
+
+signButton.addEventListener('click', () => {
+
+  
+  signInputs.forEach((element) => {
+    if (element.value === ""){
+      console.log('empty')
+      //loginContainer.insertBefore(newP, element.nextSibling)
+      //newP.innerText = "Can't be blank"
+      //newP.classList.add('alert__message')
+    }
+  })
+  
+})
+
+
+
 /* ARROW SHOW/HIDE CATEGORY */
 let categoryArrow = document.querySelectorAll('#categoryArrow');
 categoryArrow.forEach((element) => {
@@ -128,6 +155,8 @@ function setStatus (parent, status){
   newP.classList.add('contact__info__status')
   newP.textContent = status
 }
+
+
 
 function setMessage (parent, message){
   newP = document.createElement('p')
