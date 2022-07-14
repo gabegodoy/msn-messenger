@@ -1,3 +1,15 @@
+var socket = io("http://localhost:3333/");
+
+onload = async function(){
+    const users = await getUsers()
+    let username = getUsernameFromURL()
+    emitLogin(username)
+    setHeader()
+    users.forEach(user => {
+        createContact(user.firstName, user.lastName, 'status', 'message')
+    })
+}
+
 /* ARROW SHOW/HIDE CATEGORY */
 let categoryArrow = document.querySelectorAll('#categoryArrow');
 categoryArrow.forEach((element) => {
@@ -20,10 +32,6 @@ categoryArrow.forEach((element) => {
   })
   
 });
-
-
-
-
 
 /* CREATE ONLINE USERS */
 const onlineUsersList = document.querySelector('#onlineUsersList')
@@ -83,3 +91,44 @@ The passwords don't match.
 top || Wrong email or password.
 
 */
+
+function getUsers(){
+    return fetch('http://localhost:3333/users')
+        .then(response => response.json())
+        .then(data => data)
+}
+
+function getOneUser(username){
+    return fetch('http://localhost:3333/users/'+username)
+        .then(response => response.json())
+        .then(data => data)
+}
+
+function getUsernameFromURL(){
+    let url = new URL(window.location.href);
+    return url.searchParams.get("username");
+}
+
+async function setHeader(){
+    let username = getUsernameFromURL()
+    // alterar nome do usuário no cabeçalho
+    console.log(await getOneUser(username))
+}
+
+// Websockets
+function emitLogin(username){
+    socket.emit('login', { username })
+}
+
+function emitLogoff(username){
+    socket.emit('logoff', { username })
+    window.location.href = '/'
+}
+
+socket.on('login', data => {
+    console.log(data)
+})
+
+socket.on('logoff', data => {
+    console.log(data)
+})
