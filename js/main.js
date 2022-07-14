@@ -2,11 +2,19 @@ let categoryArrow = document.querySelectorAll('#categoryArrow');
 categoryArrow.forEach((element) => {
 
   element.addEventListener('click', () => {
-    let selectedCategory = element.parentElement.parentElement.parentElement.childNodes[3];
-
-    selectedCategory.style.display = 'none'
-
+    let quantityOfItems = element.parentElement.parentElement.parentElement.childNodes.length -1; 
+    
     element.classList.toggle('contacts__category__arrow--active')
+    
+    for (let i=3; i <= quantityOfItems; i++){
+      
+      let selectedCategory = element.parentElement.parentElement.parentElement.childNodes[i]
+
+      if (selectedCategory.nodeName != '#text'){
+        selectedCategory.classList.toggle('display--hide')
+      }  
+
+    }
 
   })
   
@@ -61,3 +69,8 @@ function setMessage (parent, message){
   newP.classList.add('contact__info__message')
   newP.textContent = message
 }
+
+/* Your password must include a minimum of three of the following mix of character types: uppercase, lowercase, numbers, and ! @ # $ % ^ & * () <> [] {} | _+-= symbols.
+
+The passwords don't match.
+*/
