@@ -37,21 +37,22 @@ const userMessage = document.querySelector('#userMessage');
 function validateUser (username, password){
   const options = {
     method: 'POST',
-    mode: 'cors',
+    body: JSON.stringify({ username, password }),
+    headers: {"Content-type": "application/json; charset=UTF-8"}
     //cache: 'defaut'
   }
 
-  fetch('localhost:3333/users/authenticate', options)
+  fetch('http://localhost:3333/users/authenticate', options)
   
-  .then((reponse) => {reponse.json()
+    .then((reponse) => reponse.json())
     .then(data => {
       console.log(data)
       window.location.replace('users.html')
-      userName.innerHTML(data.firstName + ' ' + data.lastName)    
-    }) })
+      // userName.innerHTML(data.firstName + ' ' + data.lastName)    
+    }) 
 
     .catch(e => console.log('Error' + e)) //Print on Login Screen
-  }
+}
 
 
 
