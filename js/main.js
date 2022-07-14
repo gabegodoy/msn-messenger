@@ -47,8 +47,10 @@ function validateUser (username, password){
     .then((reponse) => reponse.json())
     .then(data => {
       console.log(data)
-      window.location.replace('users.html')
-      // userName.innerHTML(data.firstName + ' ' + data.lastName)    
+      if (data.error) console.log(data.error)
+      else
+        window.location.replace(`users.html?username=${data.username}`)
+      userName.innerHTML(data.firstName + ' ' + data.lastName)    
     }) 
 
     .catch(e => console.log('Error' + e)) //Print on Login Screen
