@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/home.css">
 
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
 </head>
@@ -29,17 +28,20 @@
   <div class="home__login">
     <img src="assets/images//home-avatar.png" alt="image of the msn default avatar" class="login__avatar">
 
-    <input type="text" class="login__user" placeholder="Username">
-    <input type="password" class="login__password" placeholder="Password">
-    <a href="#" class="login__password-forgot">Forgot your password?</a>
-    <button class="login__button">Sign in</button>
+    <form action="" method="dialog" class="form__container">
+      <input id="loginUsername" type="text" class="login__input login__user" placeholder="Username">
+      <input id="loginPassword" type="password" class="login__input login__password" placeholder="Password">
+      <a href="#" class="login__password-forgot">Forgot your password?</a>
+      <input id="loginButton" class="login__button" type="submit" value="Log In">
+      
+    </form>
   </div>
 
-  <a href="#" class="home__new-account">Create a new account</a>
+  <a href="newUser.html" class="home__new-account">Create a new account</a>
 
 
 
-
+<p></p>
 
 </main>
 
@@ -48,6 +50,6 @@
 
 
 
-
+<script src="js/main.js"></script>
 </body>
 </html>

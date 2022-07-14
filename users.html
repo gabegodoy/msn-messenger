@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MSN | Messenger</title>
+  <link rel="icon" type="image/png" href="assets/images/home-avatar.png">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/users.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+  <section class="user__info__container">
+    <img src="assets/images/default-user-profile.png" alt="User Profile Picture" class="user__image">
+    <div class="user__info">
+      <p id="userName" class="user__info__name">Steve Jobs</p>
+      <img id="userImage" src="assets/icons/configurations-icon--01.svg" alt=" image of a configuration gear" class="header__config">
+      <p id="userStatus" class="user__info__status">Online</p>
+      <input id="userMessage" type="text" name="" class="user__info__message" placeholder="Share a message with your friends">
+    </div>
+  </section>
+
+  <section class="contacts">
+
+    <section class="contacts__favourites">
+      
+      <div class="contacts__category__container">
+        <span class="contacts__category">
+          <img id="categoryArrow" class="contacts__category__arrow" src="assets/icons/arrow-icon.svg" alt="Arrow Icon | Click to show/hide contacts list">
+          <h4 class="contacts__category__tittle">Favourites</h4>
+        </span>
+      </div>      
+      <div class="contact__info__container">
+        <img src="assets/images/default-user-profile.png" alt="User Profile Picture" class="contact__image">
+        <div class="contact__info">
+          <p class="contact__info__name">Stephen Wozniak</p>
+          <p class="contact__info__status">Busy</p>
+          <p class="contact__info__message">Coding...</p>
+        </div>
+      </div>
+      
+    </section>
+
+    <section id="onlineUsersList" class="contacts__online">
+      
+      <div class="contacts__category__container">
+        <span class="contacts__category">
+          <img id="categoryArrow" class="contacts__category__arrow" src="assets/icons/arrow-icon.svg" alt="Arrow Icon | Click to show/hide contacts list">
+          <h4 class="contacts__category__tittle">Online</h4>
+        </span>
+      </div>
+            
+    </section>
+
+
+
+
+
+  </section>
+
+
+
+  <script src="./js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+.login__input{
+  margin-top: 1rem;
+}
+
+.sign__info{
+  margin-top: 5vh;
+}
+
+.sign__avatar{
+  max-width: 60%;
+}
+
+.sign__tittle{
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--darkGray);
+  font-weight: 500;
+}
+
+
+.sign__firstName, .sign__lastName{
+  margin-top: 1rem;
+  background-image: url(../assets/icons/name--icon.svg);
+  background-size: 1.5rem;
+  background-repeat: no-repeat;
+  background-position: 5%;  
+}
+
+.sign__mail{
+  margin-top: 1rem;
+  background-image: url(../assets/icons/mail--icon.svg);
+  background-size: 1.5rem;
+  background-repeat: no-repeat;
+  background-position: 5%;
+}
+
+.terms__container{
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: .5rem;
+}
+
+.terms__text{
+  color: var(--darkGray);
+  font-size: .8rem;
+}
+
+.terms__link{
+  color: #0000EE;
+}
+
+.login__button{
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}

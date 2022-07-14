@@ -4,3 +4,28 @@ body{
   background: rgb(250,250,250);
   background: linear-gradient(0deg, rgba(250,250,250,1) 0%, rgba(208,221,239,1) 50%, rgba(250,250,250,1) 100%);
 }
+
+.alert__message{
+  color: red;
+  font-size: 1rem;
+  font-weight: 600;
+
+  width: 90%;
+  padding: .3rem;
+  margin-top: .3rem;
+  border-radius: 10px;
+}
+
+.alert__message::before{
+  background-image: url(../assets/icons/alert--icon.webp);
+  content: ' ';
+  background-size: 1.3rem;
+  background-repeat: no-repeat;
+
+  display: inline-block;
+  vertical-align: middle;
+  
+  margin-right: .2rem;
+  height: 1.3rem;
+  width: 1.3rem;
+}
