@@ -124,11 +124,16 @@ body{
 }
 
 .contact__image{
-  width: 2rem;
-  height: 2rem;
+  box-sizing: border-box;
+  width: 2.5rem;
+  height: 2.5rem;
   border: solid var(--red) 2px;
   border-radius: 10px;
   padding: .2rem;
+}
+
+.contact__image--dev{
+  padding: 0;
 }
 
 .contact__info{

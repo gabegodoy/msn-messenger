@@ -152,3 +152,15 @@ socket.on('login', data => {
 socket.on('logoff', data => {
     console.log(data)
 })
+
+
+const gabrielDiv = document.querySelector('#gabriel');
+const guilhermeDiv = document.querySelector('#guilherme');
+
+gabrielDiv.addEventListener('click', () => {
+  window.open("https://www.linkedin.com/in/gabecgodoy/");
+})
+
+guilhermeDiv.addEventListener('click', () => {
+  window.open("https://www.linkedin.com/in/guilherme-fcm/");
+})
