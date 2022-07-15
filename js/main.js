@@ -1,4 +1,3 @@
-//export const tryHard = 'Get results';
 
 
 /* LOGIN CHECK */
@@ -8,7 +7,7 @@ const loginButton = document.querySelector('#loginButton');
 const formContainer = document.querySelector('.form__container');
 const loginContainer = document.querySelector('#loginContainer')
 
-
+let userInfo;
 let newP = document.createElement('p');
 
 loginButton.addEventListener('click', () => {
@@ -63,15 +62,18 @@ function validateUser (username, password){
         newP.style.textAlign = 'center'
 
       }
-      else
-        window.location.replace(`users.html?username=${data.username}`)
-      userName.innerHTML(data.firstName + ' ' + data.lastName)    
+      else{
+        userInfo = data;
+        window.location.replace('users.html')
+
+        // ?username=${data.username}
+        //userName.innerHTML(data.firstName + ' ' + data.lastName)    
+      }
+
     }) 
 
     .catch(e => console.log('Error' + e)) 
 }
 
 
-
-
-console.log(tryHard)
+export {userInfo}

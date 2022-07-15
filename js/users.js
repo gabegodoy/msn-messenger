@@ -1,15 +1,20 @@
-//import tryHard from './main.js'
-//console.log('./main.js')
+//import {userInfo} from './main.js'
+//console.log(userInfo)
 
 var socket = io("http://localhost:3333/");
 
 onload = async function(){
     const users = await getUsers()
     let username = getUsernameFromURL()
-    emitLogin(username)
+    let firstName;
+    let lastName;
+    let status = 'Busy'
+    let message = 'Listening to Linking Park'
+
+    emitLogin(username, firstName, lastName, status, message)
     setHeader()
     users.forEach(user => {
-        createContact(user.firstName, user.lastName, 'status', 'message')
+        createContact(user.firstName, user.lastName, 'status', 'message', offlineUsersList)
     })
 }
 
@@ -37,15 +42,16 @@ categoryArrow.forEach((element) => {
 });
 
 /* CREATE ONLINE USERS */
-const offlineUsersList = document.querySelector('#offlineUsersList')
+const offlineUsersList = document.querySelector('#offlineUsersList');
+const onlineUsersList = document.querySelector('#onlineUsersList');
 let newDiv = document.createElement('div');
 let newP = document.createElement('p');
 let newImg = document.createElement('img');
 
-function createContact (name, surname, status, message){
+function createContact (name, surname, status, message, nodeParent){
   let image = 'assets/images/default-user-profile.png';
 
-  setDiv(offlineUsersList, 'contact__info__container')
+  setDiv(nodeParent, 'contact__info__container')
   setImage(newDiv, image)
   setDiv(newDiv, 'contact__info')
   setName(newDiv, name, surname)
@@ -112,8 +118,8 @@ async function setHeader(){
 }
 
 // Websockets
-function emitLogin(username){
-    socket.emit('login', { username })
+function emitLogin(username, firstName, lastName, status, message){
+    socket.emit('login', { username, firstName, lastName, status, message })
 }
 
 function emitLogoff(username){
@@ -121,8 +127,19 @@ function emitLogoff(username){
     window.location.href = '/'
 }
 
+//EMIT É RESPONSÁVEL POR ENVIAR DADOS
+  //ATUALIZA MUDANÇA NO EVENTO
+
+//ON É RESPONSÁVEL POR ESCUTAR
+
 socket.on('login', data => {
     console.log(data)
+
+    data.forEach((element) => {
+      createContact(element.firstName, element.lastName, 'status', 'message', onlineUsersList)
+
+    })
+
 })
 
 socket.on('logoff', data => {
