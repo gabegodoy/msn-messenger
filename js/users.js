@@ -1,5 +1,5 @@
-import {getUserInfo} from "./userInfo.js";
-console.log(getUserInfo())
+import {userInfo} from "./userInfo.js";
+console.log(userInfo)
 
 var socket = io("http://localhost:3333/");
 

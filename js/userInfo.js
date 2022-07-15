@@ -1,8 +1,6 @@
-var userInfo
+let userInfo = 'userInformations';
 
-function getUserInfo(){ return userInfo }
-
-function validateUser (username, password){
+export function validateUser (username, password){
     const options = {
       method: 'POST',
       body: JSON.stringify({ username, password }),
@@ -39,4 +37,4 @@ function validateUser (username, password){
       .catch(e => console.log('Error' + e)) 
   }
 
-export {validateUser, getUserInfo}
+export { userInfo }
