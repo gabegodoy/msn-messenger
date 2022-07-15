@@ -12,6 +12,7 @@ const signButton = document.querySelector('#signButton')
 const signInputs = document.querySelectorAll('.sign__input');
 const signInputsContainer = document.querySelector('.form__container')
 
+
 let newP = document.createElement('p');
 
 signButton.addEventListener('click', () => {
@@ -69,4 +70,18 @@ function newUser (username, firstName, lastName, password, email){
     }) 
 
     .catch(e => console.log('Error' + e)) 
+}
+
+const termsLink = document.querySelector('.terms__link');
+const signContainer = document.querySelector('.sign__info');
+const termsBackground = document.querySelector('.termsAndConditions__background');
+
+termsLink.addEventListener('click', () => {
+  signContainer.style.display = 'none'
+  termsBackground.style.display = 'flex'
+})
+
+function hideTerms (){
+  signContainer.style.display = 'flex'
+  termsBackground.style.display = 'none'
 }

@@ -1,0 +1,65 @@
+.termsAndConditions__background{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0, 0, 0,0.25);
+  backdrop-filter: blur(1px); 
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .termsAndConditions__container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  
+  width: 80vw;
+  height: 80vh;
+  background: #3c1361;
+  border-radius: 10px;
+  
+  font-family: 'Press Start 2P', cursive;
+} */
+
+.termsAndConditions__tittle{
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: underline;
+  margin-bottom: 2rem;
+  
+}
+
+.termsAndConditions__subtitle{
+  margin-top: 1.5rem;
+  margin-bottom: .5rem;
+  font-weight: 500;
+}
+
+
+.termsAndConditions__text{
+  margin-left: 1rem;
+  margin-right: 1rem;
+  text-align: justify;
+  color: black;
+} 
+
+.termsAndConditions__button{
+  margin-top: 3rem;
+  padding: .5rem 2rem;
+  border: solid black 1px;
+  border-radius: 10px;
+  font-weight: 800;
+  background-color: lightgray;
+  transform: .2s ease;
+}
+
+.termsAndConditions__button:hover{
+  font-size: 1.3rem;
+}
