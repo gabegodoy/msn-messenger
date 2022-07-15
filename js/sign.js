@@ -15,39 +15,32 @@ const signInputsContainer = document.querySelector('.form__container')
 let newP = document.createElement('p');
 
 signButton.addEventListener('click', () => {
-
-  
   signInputs.forEach((element) => {
     if (element.value === ""){
-      console.log('empty' + element)
       signInputsContainer.insertBefore(newP, element.nextSibling)
       newP.innerText = "Can't be blank"
       newP.classList.add('alert__message')
       newP.style.textAlign = 'left'
     }
-
-    else if (signPassword.value !== signPasswordConfirm.value){
-      signInputsContainer.insertBefore(newP, signPasswordConfirm.nextSibling)
-      newP.innerText = "The passwords don't match"
-      newP.classList.add('alert__message')
-      newP.style.textAlign = 'left'
-    }
-
-    else if (termsCheckbox.checked == false){
-      signInputsContainer.insertBefore(newP, termsContainer.nextSibling)
-      newP.innerText = "You must read and agree"
-      newP.classList.add('alert__message')
-      newP.style.textAlign = 'center'
-    }
-
-    else {window.location.replace('index.html')}
-    //SEND DATA TO BACK
-
-    
-
-
-
   })
+
+  if (signPassword.value !== signPasswordConfirm.value){
+    signInputsContainer.insertBefore(newP, signPasswordConfirm.nextSibling)
+    newP.innerText = "The passwords don't match"
+    newP.classList.add('alert__message')
+    newP.style.textAlign = 'left'
+  }
+
+  else if (termsCheckbox.checked == false){
+    signInputsContainer.insertBefore(newP, termsContainer.nextSibling)
+    newP.innerText = "You must read and agree"
+    newP.classList.add('alert__message')
+    newP.style.textAlign = 'center'
+  }
+
+  else {
+    newUser(signUsername.value, signFirstName.value, signLastName.value, signPassword.value, signMail.value)
+  }
   
 })
 
@@ -66,15 +59,13 @@ function newUser (username, firstName, lastName, password, email){
     .then((reponse) => reponse.json())
     .then(data => {
       if (data.error){
-        console.log(data.error) 
-        
         signInputsContainer.insertBefore(newP, termsContainer.nextSibling);
         newP.innerText = data.error;
         newP.classList.add('alert__message');
         newP.style.textAlign = 'center';
       }
       else
-        window.location.replace('index.html')   
+        window.location.replace('index.html')
     }) 
 
     .catch(e => console.log('Error' + e)) 

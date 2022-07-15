@@ -1,7 +1,3 @@
-
-import {userInfo} from "./userInfo.js";
-console.log(userInfo)
-
 var socket = io("http://localhost:3333/");
 
 const userName = document.querySelector('#userName');
@@ -9,19 +5,9 @@ let firstName;
 let lastName;
 
 function getUserInfo (username){
-  const options = {
-    method: 'GET',
-    //cache: 'defaut'
-  }
-
-  fetch('http://localhost:3333/users/'+username, options)
-  
+  return fetch('http://localhost:3333/users/'+username)
     .then((reponse) => reponse.json())
-    .then(data => {
-      firstName = data.firstName
-      lastName = data.lastName   
-    }) 
-
+    .then(data => data) 
     .catch(e => console.log('Error' + e)) 
 }
 
@@ -30,13 +16,13 @@ onload = async function(){
     const users = await getUsers()
     let username = getUsernameFromURL()
 
+    const user = await getUserInfo(username)
+    
     let status = 'Busy'
     let message = 'Listening to Linking Park'
 
-    getUserInfo(username)
-
-    emitLogin(username, firstName, lastName, status, message)
-    setHeader()
+    emitLogin(username, user.firstName, user.lastName, status, message)
+    setHeader(user)
     users.forEach(user => {
         createContact(user.firstName, user.lastName, 'status', 'message', offlineUsersList)
     })
@@ -135,13 +121,8 @@ function getUsernameFromURL(){
     return url.searchParams.get("username");
 }
 
-async function setHeader(){
-  userName.innerHTML(firstName + ' ' + lastName)
-
-
-
-    // alterar nome do usuário no cabeçalho
-    // console.log(await getOneUser(username))
+function setHeader(user){
+  userName.innerHTML = user.firstName + ' ' + user.lastName
 }
 
 // Websockets
@@ -164,7 +145,6 @@ socket.on('login', data => {
 
     data.forEach((element) => {
       createContact(element.firstName, element.lastName, 'status', 'message', onlineUsersList)
-
     })
 
 })

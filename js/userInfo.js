@@ -1,5 +1,3 @@
-let userInfo = 'userInformations';
-
 export function validateUser (username, password){
     const options = {
       method: 'POST',
@@ -23,18 +21,10 @@ export function validateUser (username, password){
   
         }
         else{
-        //   userInfo = data;
-          userInfo = data;
-          console.log(userInfo, data)
-          window.location.replace('users.html')
-  
-          // ?username=${data.username}
-          //userName.innerHTML(data.firstName + ' ' + data.lastName)    
+          window.location.replace('users.html?username='+data.username)  
         }
   
       }) 
   
       .catch(e => console.log('Error' + e)) 
-  }
-
-export { userInfo }
+}
