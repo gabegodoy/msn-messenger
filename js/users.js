@@ -1,5 +1,5 @@
-//import {userInfo} from './main.js'
-//console.log(userInfo)
+import {getUserInfo} from "./userInfo.js";
+console.log(getUserInfo())
 
 var socket = io("http://localhost:3333/");
 
@@ -100,11 +100,11 @@ function getUsers(){
         .then(data => data)
 }
 
-function getOneUser(username){
-    return fetch('http://localhost:3333/users/'+username)
-        .then(response => response.json())
-        .then(data => data)
-}
+// function getOneUser(username){
+//     return fetch('http://localhost:3333/users/'+username)
+//         .then(response => response.json())
+//         .then(data => data)
+// }
 
 function getUsernameFromURL(){
     let url = new URL(window.location.href);
@@ -114,7 +114,7 @@ function getUsernameFromURL(){
 async function setHeader(){
     let username = getUsernameFromURL()
     // alterar nome do usuário no cabeçalho
-    console.log(await getOneUser(username))
+    // console.log(await getOneUser(username))
 }
 
 // Websockets
