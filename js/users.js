@@ -1,15 +1,39 @@
+
 import {userInfo} from "./userInfo.js";
 console.log(userInfo)
 
 var socket = io("http://localhost:3333/");
 
+const userName = document.querySelector('#userName');
+let firstName;
+let lastName;
+
+function getUserInfo (username){
+  const options = {
+    method: 'GET',
+    //cache: 'defaut'
+  }
+
+  fetch('http://localhost:3333/users/'+username, options)
+  
+    .then((reponse) => reponse.json())
+    .then(data => {
+      firstName = data.firstName
+      lastName = data.lastName   
+    }) 
+
+    .catch(e => console.log('Error' + e)) 
+}
+
+
 onload = async function(){
     const users = await getUsers()
     let username = getUsernameFromURL()
-    let firstName;
-    let lastName;
+
     let status = 'Busy'
     let message = 'Listening to Linking Park'
+
+    getUserInfo(username)
 
     emitLogin(username, firstName, lastName, status, message)
     setHeader()
@@ -112,7 +136,10 @@ function getUsernameFromURL(){
 }
 
 async function setHeader(){
-    let username = getUsernameFromURL()
+  userName.innerHTML(firstName + ' ' + lastName)
+
+
+
     // alterar nome do usuário no cabeçalho
     // console.log(await getOneUser(username))
 }
