@@ -28,3 +28,6 @@ export function validateUser (username, password){
   
       .catch(e => console.log('Error' + e)) 
 }
+
+const loginContainer = document.querySelector('#loginContainer')
+let newP = document.createElement('p');
