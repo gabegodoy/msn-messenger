@@ -35,6 +35,7 @@ body{
   position: absolute;
   right: 1.5rem;
   vertical-align: middle;
+  transition: .8s transform;
 }
 
 .user__info__status{
@@ -47,13 +48,6 @@ body{
 
 }
 
-/* .user__info__status::before{
-  content: '(';
-}
-.user__info__status::after{
-  content: ')';
-}
- */
 .user__info__message{
   box-sizing: border-box;
   background-color: white;

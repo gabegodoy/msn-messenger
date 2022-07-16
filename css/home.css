@@ -33,6 +33,11 @@
 .header__config{
   max-width: 2rem;
   cursor: pointer;
+  transition: .8s transform;
+}
+
+.header__config:active{
+  transform: rotate(360deg);
 }
 
 .login__avatar{
