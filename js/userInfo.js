@@ -1,3 +1,6 @@
+const loginContainer = document.querySelector('#loginContainer')
+let newP = document.createElement('p');
+
 export function validateUser (username, password){
     const options = {
       method: 'POST',
@@ -13,7 +16,6 @@ export function validateUser (username, password){
         if (data.error){
           console.log(data.error) 
           
-          //Print validation error on Login Screen
           loginContainer.insertBefore(newP, formContainer)
           newP.innerText = data.error
           newP.classList.add('alert__message')
@@ -28,6 +30,3 @@ export function validateUser (username, password){
   
       .catch(e => console.log('Error' + e)) 
 }
-
-const loginContainer = document.querySelector('#loginContainer')
-let newP = document.createElement('p');

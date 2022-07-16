@@ -3,67 +3,53 @@ var socket = io("http://localhost:3333/");
 const userName = document.querySelector('#userName');
 const userMessage = document.querySelector('#userMessage')
 const userStatus = document.querySelector('#userStatus')
-const userImage = document.querySelector('.user__image')
+const userImage = document.querySelector('#userImage')
+
+const offlineUsersList = document.querySelector('#offlineUsersList');
+const onlineUsersList = document.querySelector('#onlineUsersList');
+
+let newDiv = document.createElement('div');
+let newP = document.createElement('p');
+let newImg = document.createElement('img');
 
 let firstName;
 let lastName;
+let currentUserMessage = '';
+let currentUserStatus = 'online';
+
+
 
 function getUserInfo (username){
   return fetch('http://localhost:3333/users/'+username)
     .then((reponse) => reponse.json())
     .then(data => data) 
     .catch(e => console.log('Error' + e)) 
-}
 
+    // if (e) {window.location.replace('index.html')};
+}
 
 onload = async function(){
     const users = await getUsers()
     let username = getUsernameFromURL()
+    let status = currentUserStatus
+    let message = currentUserMessage
 
     const user = await getUserInfo(username)
     
-    let status = 'Busy'
-    let message = 'Listening to Linking Park'
-
+    //SEND user.status and user.message
     emitLogin(username, user.firstName, user.lastName, status, message)
+
     setHeader(user)
     users.forEach(user => {
         createContact(user.firstName, user.lastName, 'status', 'message', offlineUsersList)
     })
 }
 
-/* ARROW SHOW/HIDE CATEGORY */
-let categoryArrow = document.querySelectorAll('#categoryArrow');
-categoryArrow.forEach((element) => {
 
-  element.addEventListener('click', () => {
-    let quantityOfItems = element.parentElement.parentElement.parentElement.childNodes.length -1; 
-    
-    element.classList.toggle('contacts__category__arrow--active')
-    
-    for (let i=3; i <= quantityOfItems; i++){
-      
-      let selectedCategory = element.parentElement.parentElement.parentElement.childNodes[i]
 
-      if (selectedCategory.nodeName != '#text'){
-        selectedCategory.classList.toggle('display--hide')
-      }  
-
-    }
-
-  })
-  
-});
-
-/* CREATE ONLINE USERS */
-const offlineUsersList = document.querySelector('#offlineUsersList');
-const onlineUsersList = document.querySelector('#onlineUsersList');
-let newDiv = document.createElement('div');
-let newP = document.createElement('p');
-let newImg = document.createElement('img');
-
+/* PRINT USERS ON SCREEN*/
 function createContact (name, surname, status, message, nodeParent){
-  let image = 'assets/images/default-user-profile.png';
+  let image = 'assets/images/default-user-profile.png'; //Default Image
 
   setDiv(nodeParent, 'contact__info__container')
   setImage(newDiv, image)
@@ -107,9 +93,9 @@ function setMessage (parent, message){
   newP.textContent = message
 }
 
-/* GET USER MESSAGE */
-let currentUserMessage;
 
+
+/* GET USER MESSAGE */
 userMessage.addEventListener('keypress', (element) =>{
   if (element.key == 'Enter'){
     currentUserMessage = userMessage.value;
@@ -118,28 +104,12 @@ userMessage.addEventListener('keypress', (element) =>{
 })
 
 
-/* GET USER STATUS */
-let currentUserStatus = 'online';
-changeStatusColour(userStatus)   
-changeStatusColour(userImage)   
-
-
-switch (currentUserStatus) {
-  case 'online':
-    
-    break;
-
-  default:
-    break;
-}
-
+/* UPDATE USER STATUS */   
 userStatus.addEventListener('change', () => {
   currentUserStatus = userStatus.options[userStatus.selectedIndex].value
   changeStatusColour(userStatus)   
   changeStatusColour(userImage)   
-
-  
-
+  //RE-LOAD THE DATA-BASE
 })
 
 function changeStatusColour (place){
@@ -148,54 +118,72 @@ function changeStatusColour (place){
   place.classList.toggle('status__absent', currentUserStatus == 'absent')
 }
 
-
-
-
 function getUsers(){
     return fetch('http://localhost:3333/users')
-        .then(response => response.json())
-        .then(data => data)
+    .then(response => response.json())
+    .then(data => data)
 }
 
 function getUsernameFromURL(){
-    let url = new URL(window.location.href);
-    return url.searchParams.get("username");
+  let url = new URL(window.location.href);
+  return url.searchParams.get("username");
 }
 
 function setHeader(user){
   userName.innerHTML = user.firstName + ' ' + user.lastName
+  changeStatusColour(userStatus)   
+  changeStatusColour(userImage)
 }
 
-// Websockets
+
+
+/* WEBSOCKETS */
 function emitLogin(username, firstName, lastName, status, message){
-    socket.emit('login', { username, firstName, lastName, status, message })
+  socket.emit('login', { username, firstName, lastName, status, message })
 }
 
 function emitLogoff(username){
-    socket.emit('logoff', { username })
-    window.location.href = '/'
+  socket.emit('logoff', { username })
+  window.location.href = '/'
 }
 
-//EMIT É RESPONSÁVEL POR ENVIAR DADOS
-  //ATUALIZA MUDANÇA NO EVENTO
-
-//ON É RESPONSÁVEL POR ESCUTAR
-
+  //EMIT É RESPONSÁVEL POR ENVIAR DADOS // ATUALIZA MUDANÇA NO EVENTO
+  //ON É RESPONSÁVEL POR ESCUTAR
+  
 socket.on('login', data => {
-    console.log(data)
+  console.log(data)
 
-    data.forEach((element) => {
-      createContact(element.firstName, element.lastName, 'status', 'message', onlineUsersList)
-    })
-
+  //send element.status and element.message
+  data.forEach((element) => {
+    createContact(element.firstName, element.lastName, 'status', 'message', onlineUsersList)
+  })
 })
 
 socket.on('logoff', data => {
-    console.log(data)
+  console.log(data)
 })
 
 
 
+/* ARROW SHOW/HIDE CATEGORY */
+let categoryArrow = document.querySelectorAll('#categoryArrow');
+categoryArrow.forEach((element) => {
+
+  element.addEventListener('click', () => {
+    let quantityOfItems = element.parentElement.parentElement.parentElement.childNodes.length -1; 
+    
+    element.classList.toggle('contacts__category__arrow--active')
+    
+    for (let i=3; i <= quantityOfItems; i++){
+      
+      let selectedCategory = element.parentElement.parentElement.parentElement.childNodes[i]
+
+      if (selectedCategory.nodeName != '#text'){
+        selectedCategory.classList.toggle('display--hide')
+      }  
+    }
+  })
+});
 
 
 

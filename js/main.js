@@ -1,16 +1,12 @@
 import {validateUser} from "./userInfo.js";
-// console.log(userInfo)
-// userInfo = 'passou na main'
+let newP = document.createElement('p');
 
-
-/* LOGIN CHECK */
 const loginUsername = document.querySelector('#loginUsername');
 const loginPassword = document.querySelector('#loginPassword');
 const loginButton = document.querySelector('#loginButton');
-const formContainer = document.querySelector('.form__container');
-const loginContainer = document.querySelector('#loginContainer')
+const formContainer = document.querySelector('#formContainer');
 
-let newP = document.createElement('p');
+
 
 loginButton.addEventListener('click', () => {
 
@@ -27,23 +23,11 @@ loginButton.addEventListener('click', () => {
   }
   
   if (loginUsername.value !== "" && loginPassword.value !== ""){
-    
+
     if (loginUsername.value === "admin" && loginPassword.value == "admin"){
       window.location.replace('users.html')
     } 
     
-    
-    else {validateUser(loginUsername.value, loginPassword.value)
-    }
-    
-    //LOADING SCREEN
+    else {validateUser(loginUsername.value, loginPassword.value)}
   }
-  
 })
-
-
-/* VALIDATE AND SET USER INFO ON HEADER */
-const userName = document.querySelector('#userName');
-const userImage = document.querySelector('#userImage');
-const userStatus = document.querySelector('#userStatus');
-const userMessage = document.querySelector('#userMessage');

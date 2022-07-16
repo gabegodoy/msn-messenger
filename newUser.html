@@ -28,11 +28,11 @@
       <img src="assets/icons/configurations-icon--01.svg" alt=" image of a configuration gear" class="header__config">
     </header>
     
-    <div class="home__login sign__info">
+    <div id="signContainer" class="home__login sign__info">
       <img src="assets/images/msn_user_23326.png" alt="black avatar image" class="sign__avatar">
       <h1 class="sign__tittle">Sign Up</h1>
 
-     <form action="" method="dialog" class="form__container">
+     <form id="formContainer" action="" method="dialog" class="form__container">
 
         <input id="signFirstName" type="text" class="sign__input login__input sign__firstName" placeholder="First Name">
         <input id="signLastName" type="text" class="sign__input login__input sign__lastName" placeholder="Last Name">
@@ -41,9 +41,9 @@
         <input id="signPassword" type="password" class="sign__input login__input login__password sign__password" placeholder="Password">
         <input id="signPasswordConfirm" type="password" class="sign__input login__input login__password sign__password" placeholder="Confirm Password">
         
-        <div class="terms__container">
+        <div id="termsContainer" class="terms__container">
           <input class="terms__checkbox" type="checkbox" id="termsCheckbox">
-          <p class="terms__text">I read and agree to <a class="terms__link" href="#">Tems & Conditions</a></p>
+          <p class="terms__text">I read and agree to <a id="termsLink" class="terms__link" href="#">Tems & Conditions</a></p>
         </div>
         
         <input id="signButton" class="login__button" type="submit" value="Create Account">
@@ -52,7 +52,7 @@
     
   </main>
 
-  <section class="termsAndConditions__background">
+  <section id="termsBackground" class="termsAndConditions__background">
     <h2 class="termsAndConditions__tittle">Terms and Conditions</h2>
     <h4 class="termsAndConditions__subtitle"> 1.1 Lorem, ipsum dolor.</h4>
     <p class="termsAndConditions__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi incidunt ducimus deleniti, ullam impedit voluptatibus sapiente cumque voluptates quas debitis?</p>
