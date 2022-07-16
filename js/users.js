@@ -1,6 +1,10 @@
 var socket = io("http://localhost:3333/");
 
 const userName = document.querySelector('#userName');
+const userMessage = document.querySelector('#userMessage')
+const userStatus = document.querySelector('#userStatus')
+const userImage = document.querySelector('.user__image')
+
 let firstName;
 let lastName;
 
@@ -103,18 +107,55 @@ function setMessage (parent, message){
   newP.textContent = message
 }
 
+/* GET USER MESSAGE */
+let currentUserMessage;
+
+userMessage.addEventListener('keypress', (element) =>{
+  if (element.key == 'Enter'){
+    currentUserMessage = userMessage.value;
+    userMessage.value = ''
+  }
+})
+
+
+/* GET USER STATUS */
+let currentUserStatus = 'online';
+changeStatusColour(userStatus)   
+changeStatusColour(userImage)   
+
+
+switch (currentUserStatus) {
+  case 'online':
+    
+    break;
+
+  default:
+    break;
+}
+
+userStatus.addEventListener('change', () => {
+  currentUserStatus = userStatus.options[userStatus.selectedIndex].value
+  changeStatusColour(userStatus)   
+  changeStatusColour(userImage)   
+
+  
+
+})
+
+function changeStatusColour (place){
+  place.classList.toggle('status__online', currentUserStatus == 'online')
+  place.classList.toggle('status__busy', currentUserStatus == 'busy')
+  place.classList.toggle('status__absent', currentUserStatus == 'absent')
+}
+
+
+
 
 function getUsers(){
     return fetch('http://localhost:3333/users')
         .then(response => response.json())
         .then(data => data)
 }
-
-// function getOneUser(username){
-//     return fetch('http://localhost:3333/users/'+username)
-//         .then(response => response.json())
-//         .then(data => data)
-// }
 
 function getUsernameFromURL(){
     let url = new URL(window.location.href);
@@ -154,6 +195,11 @@ socket.on('logoff', data => {
 })
 
 
+
+
+
+
+/* LINKEDIN LINK ON DEVs USERS*/
 const gabrielDiv = document.querySelector('#gabriel');
 const guilhermeDiv = document.querySelector('#guilherme');
 
