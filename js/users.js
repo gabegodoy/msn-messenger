@@ -17,6 +17,7 @@ let lastName;
 let currentUserMessage = '';
 let currentUserStatus = 'online';
 
+changeStatusColour(userStatus)   
 
 
 function getUserInfo (username){
