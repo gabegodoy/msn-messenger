@@ -23,11 +23,6 @@ loginButton.addEventListener('click', () => {
   }
   
   if (loginUsername.value !== "" && loginPassword.value !== ""){
-
-    if (loginUsername.value === "admin" && loginPassword.value == "admin"){
-      window.location.replace('users.html')
-    } 
-    
-    else {validateUser(loginUsername.value, loginPassword.value)}
+    {validateUser(loginUsername.value, loginPassword.value)}
   }
 })
