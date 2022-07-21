@@ -33,7 +33,7 @@ function getUserInfo (username){
 onload = async function(){
     const users = await getUsers()
     offlineUsers = users;
-    
+
     let username = getUsernameFromURL()
     let status = currentUserStatus
     let message = currentUserMessage
@@ -167,36 +167,23 @@ socket.on('login', data => {
   clearScreen(onlineUsersList, onlineUsersListTag)
   printUsers(data, onlineUsersList)
   
-  //clearScreen(offlineUsersList, offlineUsersListTag)
+  clearScreen(offlineUsersList, offlineUsersListTag)
   
-  console.log(data)
-  console.log(offlineUsers)
-  
-  for (var i = 0; i < data.length; i++){
-    offlineUsers.forEach(offline => {
+  let onlineUsernames = []
+  let currentOfflineUsers;
 
-   // while (!data[i].username.includes(offline.username)) {
-   //     console.log(offline.username)
-   // }
- 
-      //if(data[i].username.includes(offline.username)){console.log(offline.username)}
-    });
-  }  
-
-  offlineUsers.forEach(offline => {
-    data[i].username.includes(offline)
+  data.forEach(element => {
+    onlineUsernames.push(element.username)
   });
 
+  onlineUsernames.forEach(element => {
+    currentOfflineUsers = offlineUsers.filter(el => 
+    el.username !== element)
+  });
 
-    
-
-
-      //createContact(element.firstName, element.lastName, 'status', 'message', offlineUsersList);  
-    
-    
-
-  
-
+  currentOfflineUsers.forEach(element => {
+    createContact(element.firstName, element.lastName, 'status', 'message', offlineUsersList);  
+  })
 
 })
 
