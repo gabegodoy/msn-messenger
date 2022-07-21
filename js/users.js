@@ -164,26 +164,32 @@ function emitLogoff(username){
   //ON É RESPONSÁVEL POR ESCUTAR
   
 socket.on('login', data => {
-  clearScreen(onlineUsersList, onlineUsersListTag)
-  printUsers(data, onlineUsersList)
   
-  clearScreen(offlineUsersList, offlineUsersListTag)
-  
+  let currentOnlineUsers = data.slice(1)
   let onlineUsernames = []
   let currentOfflineUsers;
+  
+  clearScreen(onlineUsersList, onlineUsersListTag)
+  printUsers(currentOnlineUsers, onlineUsersList)
+  clearScreen(offlineUsersList, offlineUsersListTag)
 
+  
   data.forEach(element => {
     onlineUsernames.push(element.username)
   });
 
-  onlineUsernames.forEach(element => {
-    currentOfflineUsers = offlineUsers.filter(el => 
-    el.username !== element)
+  currentOfflineUsers = offlineUsers.filter(function (objeto) { 
+    return onlineUsernames.indexOf(objeto.username) === -1 
   });
-
+ 
   currentOfflineUsers.forEach(element => {
     createContact(element.firstName, element.lastName, 'status', 'message', offlineUsersList);  
   })
+    
+//  console.log(getUsernameFromURL())
+//  console.log(onlineUsernames)
+//  console.log(offlineUsers)
+//  console.log(currentOfflineUsers)
 
 })
 
