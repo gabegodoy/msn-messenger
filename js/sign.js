@@ -52,7 +52,7 @@ function newUser (username, firstName, lastName, password, email){
     //cache: 'defaut'
   }
   
-  fetch('http://localhost:3333/users', options)
+  fetch('https://msn-messenger-server.herokuapp.com/users', options)
   
   .then((reponse) => reponse.json())
   .then(data => {

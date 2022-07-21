@@ -1,4 +1,4 @@
-var socket = io("http://localhost:3333/");
+var socket = io("https://msn-messenger-server.herokuapp.com");
 
 const userName = document.querySelector('#userName');
 const userMessage = document.querySelector('#userMessage')
@@ -21,7 +21,7 @@ changeStatusColour(userStatus)
 
 
 function getUserInfo (username){
-  return fetch('http://localhost:3333/users/'+username)
+  return fetch('https://msn-messenger-server.herokuapp.com/users/'+username)
     .then((reponse) => reponse.json())
     .then(data => data) 
     .catch(e => console.log('Error' + e)) 
@@ -120,7 +120,7 @@ function changeStatusColour (place){
 }
 
 function getUsers(){
-    return fetch('http://localhost:3333/users')
+    return fetch('https://msn-messenger-server.herokuapp.com/users')
     .then(response => response.json())
     .then(data => data)
 }

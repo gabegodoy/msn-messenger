@@ -9,7 +9,7 @@ export function validateUser (username, password){
       //cache: 'defaut'
     }
   
-    fetch('http://localhost:3333/users/authenticate', options)
+    fetch('https://msn-messenger-server.herokuapp.com/users/authenticate', options)
     
       .then((reponse) => reponse.json())
       .then(data => {
