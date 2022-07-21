@@ -8,6 +8,9 @@ const userImage = document.querySelector('#userImage')
 const offlineUsersList = document.querySelector('#offlineUsersList');
 const onlineUsersList = document.querySelector('#onlineUsersList');
 
+let onlineUsers;
+let offlineUsers;
+
 let newDiv = document.createElement('div');
 let newP = document.createElement('p');
 let newImg = document.createElement('img');
@@ -25,25 +28,26 @@ function getUserInfo (username){
     .then((reponse) => reponse.json())
     .then(data => data) 
     .catch(e => console.log('Error' + e)) 
-
-    // if (e) {window.location.replace('index.html')};
 }
 
 onload = async function(){
     const users = await getUsers()
+    offlineUsers = users;
+    
     let username = getUsernameFromURL()
     let status = currentUserStatus
     let message = currentUserMessage
 
     const user = await getUserInfo(username)
     
+    
     //SEND user.status and user.message
-    emitLogin(username, user.firstName, user.lastName, status, message)
-
-    setHeader(user)
-    users.forEach(user => {
-        createContact(user.firstName, user.lastName, 'status', 'message', offlineUsersList)
-    })
+    if (!user.error){
+      emitLogin(username, user.firstName, user.lastName, status, message)
+      setHeader(user)
+      printUsers(users, offlineUsersList)
+    }
+    else {window.location.replace('index.html')}
 }
 
 
@@ -94,6 +98,14 @@ function setMessage (parent, message){
   newP.textContent = message
 }
 
+const onlineUsersListTag = document.querySelector('#onlineUsersListTag');
+const offlineUsersListTag = document.querySelector('#offlineUsersListTag');
+
+function clearScreen (place, firstChild){
+   while (firstChild.nextSibling) {
+    place.removeChild(firstChild.nextSibling)
+  }  
+}
 
 
 /* GET USER MESSAGE */
@@ -152,13 +164,49 @@ function emitLogoff(username){
   //ON É RESPONSÁVEL POR ESCUTAR
   
 socket.on('login', data => {
+  clearScreen(onlineUsersList, onlineUsersListTag)
+  printUsers(data, onlineUsersList)
+  
+  //clearScreen(offlineUsersList, offlineUsersListTag)
+  
   console.log(data)
+  console.log(offlineUsers)
+  
+  for (var i = 0; i < data.length; i++){
+    offlineUsers.forEach(offline => {
 
-  //send element.status and element.message
-  data.forEach((element) => {
-    createContact(element.firstName, element.lastName, 'status', 'message', onlineUsersList)
-  })
+   // while (!data[i].username.includes(offline.username)) {
+   //     console.log(offline.username)
+   // }
+ 
+      //if(data[i].username.includes(offline.username)){console.log(offline.username)}
+    });
+  }  
+
+  offlineUsers.forEach(offline => {
+    data[i].username.includes(offline)
+  });
+
+
+    
+
+
+      //createContact(element.firstName, element.lastName, 'status', 'message', offlineUsersList);  
+    
+    
+
+  
+
+
 })
+
+
+function printUsers(users, place){
+  users.forEach((element) => {
+    //send element.status and element.message
+    createContact(element.firstName, element.lastName, 'status', 'message', place);  
+  })
+}
 
 socket.on('logoff', data => {
   console.log(data)
