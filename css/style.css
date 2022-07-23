@@ -30,3 +30,11 @@ body{
   width: 1.3rem;
 }
 
+@media screen and (min-width: 1000px)  {
+  body{
+    width: 390px;
+    margin: 3rem auto;
+    border: solid black .5px;
+    border-radius: 20px;
+  }
+}

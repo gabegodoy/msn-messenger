@@ -165,15 +165,17 @@ function emitLogoff(username){
   
 socket.on('login', data => {
   
-  let currentOnlineUsers = data.slice(1)
+  //let currentOnlineUsers = data.slice(1)
+  //console.log(data)
+  //console.log(currentOnlineUsers)
   let onlineUsernames = []
   let currentOfflineUsers;
   
   clearScreen(onlineUsersList, onlineUsersListTag)
-  printUsers(currentOnlineUsers, onlineUsersList)
+  printUsers(data, onlineUsersList)
   clearScreen(offlineUsersList, offlineUsersListTag)
 
-  
+
   data.forEach(element => {
     onlineUsernames.push(element.username)
   });
@@ -193,6 +195,9 @@ socket.on('login', data => {
 
 })
 
+socket.on('logoff', data => {
+  console.log(data)
+})
 
 function printUsers(users, place){
   users.forEach((element) => {
@@ -201,9 +206,6 @@ function printUsers(users, place){
   })
 }
 
-socket.on('logoff', data => {
-  console.log(data)
-})
 
 
 
