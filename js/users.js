@@ -1,7 +1,7 @@
 var socket = io("https://msn-messenger-server.herokuapp.com");
 
 const userName = document.querySelector('#userName');
-const userMessage = document.querySelector('#userMessage')
+const userNote = document.querySelector('#userMessage')
 const userStatus = document.querySelector('#userStatus')
 const userImage = document.querySelector('#userImage')
 
@@ -11,17 +11,17 @@ const onlineUsersList = document.querySelector('#onlineUsersList');
 let onlineUsers;
 let offlineUsers;
 
+
 let newDiv = document.createElement('div');
 let newP = document.createElement('p');
 let newImg = document.createElement('img');
 
 let firstName;
 let lastName;
-let currentUserMessage = '';
+let currentUserNote = '';
 let currentUserStatus = 'online';
 
 changeStatusColour(userStatus)   
-
 
 function getUserInfo (username){
   return fetch('https://msn-messenger-server.herokuapp.com/users/'+username)
@@ -36,16 +36,16 @@ onload = async function(){
 
     let username = getUsernameFromURL()
     let status = currentUserStatus
-    let message = currentUserMessage
 
     const user = await getUserInfo(username)
     
-    
+
     //SEND user.status and user.message
     if (!user.error){
-      emitLogin(username, user.firstName, user.lastName, status, message)
+      emitLogin(user.username, user.firstName, user.lastName, status, user.note)
       setHeader(user)
       printUsers(users, offlineUsersList)
+      console.log(user)
     }
     else {window.location.replace('index.html')}
 }
@@ -53,21 +53,23 @@ onload = async function(){
 
 
 /* PRINT USERS ON SCREEN*/
-function createContact (name, surname, status, message, nodeParent){
+function createContact (name, surname, status, message, nodeParent, id, username){
   let image = 'assets/images/default-user-profile.png'; //Default Image
 
-  setDiv(nodeParent, 'contact__info__container')
+  setDiv(nodeParent, 'contact__info__container', id + 'User')
+  newDiv.classList.add(username)
   setImage(newDiv, image)
-  setDiv(newDiv, 'contact__info')
+  setDiv(newDiv, 'contact__info', id + 'UserInfo')
   setName(newDiv, name, surname)
   setStatus(newDiv, status)
   setMessage(newDiv, message)
 }
 
-function setDiv (parent, className){
+function setDiv (parent, className, id){
   newDiv = document.createElement('div')
   parent.appendChild(newDiv)
   newDiv.classList.add(className)
+  newDiv.id = id
 } 
 
 function setImage (parent, imageSrc){
@@ -109,10 +111,11 @@ function clearScreen (place, firstChild){
 
 
 /* GET USER MESSAGE */
-userMessage.addEventListener('keypress', (element) =>{
+userNote.addEventListener('keypress', (element) =>{
   if (element.key == 'Enter'){
-    currentUserMessage = userMessage.value;
-    userMessage.value = ''
+    currentUserNote = userNote.value;
+    userNote.value = ''
+    emitNote(getUsernameFromURL(), currentUserNote)
   }
 })
 
@@ -123,6 +126,8 @@ userStatus.addEventListener('change', () => {
   changeStatusColour(userStatus)   
   changeStatusColour(userImage)   
   //RE-LOAD THE DATA-BASE
+  
+  emitStatus(getUsernameFromURL(), currentUserStatus)
 })
 
 function changeStatusColour (place){
@@ -175,6 +180,7 @@ socket.on('login', data => {
   printUsers(data, onlineUsersList)
   clearScreen(offlineUsersList, offlineUsersListTag)
 
+  redirectToConversation()
 
   data.forEach(element => {
     onlineUsernames.push(element.username)
@@ -185,7 +191,7 @@ socket.on('login', data => {
   });
  
   currentOfflineUsers.forEach(element => {
-    createContact(element.firstName, element.lastName, 'status', 'message', offlineUsersList);  
+    createContact(element.firstName, element.lastName, 'status', element.note, offlineUsersList, 'offline', element.username);  
   })
     
 //  console.log(getUsernameFromURL())
@@ -199,14 +205,74 @@ socket.on('logoff', data => {
   console.log(data)
 })
 
+
+
+function emitStatus(username, status){
+  socket.emit('statusChange', { username, status })
+}
+  
+socket.on('statusChange', data => {
+  console.log(data)
+})
+
+
+
+function emitNote(username, note){
+  socket.emit('noteChange', { username, note })
+}
+  
+socket.on('noteChange', data => {
+  console.log(data.username, data.note)
+
+  let onlineUsers = redirectToConversation()
+
+  onlineUsers.forEach(element => {
+    if(data.username === element.classList[1]){
+      element.lastChild.lastChild.innerHTML = data.note
+    }    
+  });
+  
+})
+
+
+
+
+
+
+
+
 function printUsers(users, place){
   users.forEach((element) => {
     //send element.status and element.message
-    createContact(element.firstName, element.lastName, 'status', 'message', place);  
+    createContact(element.firstName, element.lastName, 'status', element.note, place, 'online',element.username);  
   })
 }
 
 
+
+function redirectToConversation (){
+
+  const contactUser = document.querySelectorAll('#onlineUser')
+
+  let user1;
+  let user2;
+  
+  contactUser.forEach((element) => {
+    element.addEventListener('click', () => {
+      
+      user1 = getUsernameFromURL();
+      user2 = element.classList[1];
+
+      window.location.replace('conversation.html?username1='+user1+'&username2='+user2)  
+    })
+  })
+
+  return contactUser
+  
+}
+
+let contactUser = redirectToConversation()
+console.log(contactUser)
 
 
 /* ARROW SHOW/HIDE CATEGORY */
