@@ -1,3 +1,7 @@
+body{
+  background-color: var(--bg01);
+}
+
 .user__info__message{
   background-color: transparent;
   
@@ -33,7 +37,11 @@
   justify-content: center;
   align-items: center;
 
-  background-color: var(--bg03);
+  -webkit-box-shadow: 0px -1px 18px -15px #000000; 
+  box-shadow: 0px -1px 18px -15px #000000;
+
+  background: rgb(235,241,247);
+  background: linear-gradient(170deg, rgba(235,241,247,1) 0%, rgba(250,249,253,1) 100%);
 }
 
 .write__field__container img{
@@ -64,5 +72,106 @@
   border-radius: 999px;
 
   padding: .4rem;
-
 }
+
+
+.imessage {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  margin: 0 auto 1rem;
+
+  padding: 0.5rem 1.8rem;
+}
+
+
+.imessage p {
+  border-radius: 1.15rem;
+  line-height: 1.25;
+  max-width: 75%;
+  padding: 0.5rem .875rem;
+  position: relative;
+  word-wrap: break-word;
+  font-weight: 500;
+}
+
+.imessage p::before,
+.imessage p::after {
+  bottom: -0.1rem;
+  content: "";
+  height: 1rem;
+  position: absolute;
+}
+
+p.from-me {
+  align-self: flex-end;
+  background-color: var(--darkGray);
+  background-color: #8ea9d9;
+  color: #fff; 
+}
+
+p.from-me::before {
+  border-bottom-left-radius: 0.8rem 0.7rem;
+  border-right: 1rem solid var(--darkGray);
+  border-right: 1rem solid #8ea9d9;
+  right: -0.35rem;
+  transform: translate(0, -0.1rem);
+}
+
+p.from-me::after {
+  background-color: #fff;
+  border-bottom-left-radius: 0.5rem;
+  right: -40px;
+  transform:translate(-30px, -2px);
+  width: 10px;
+}
+
+p[class^="from-"] {
+  margin: 0.5rem 0;
+  width: fit-content;
+}
+
+p.from-me ~ p.from-me {
+  margin: 0.25rem 0 0;
+}
+
+p.from-me ~ p.from-me:not(:last-child) {
+  margin: 0.25rem 0 0;
+}
+
+p.from-me ~ p.from-me:last-child {
+  margin-bottom: 0.5rem;
+}
+
+p.from-them {
+  align-items: flex-start;
+  background-color: #ecf2f7;
+  color: var(--darkGray);
+  color: #8ea9d9;
+  
+}
+
+p.from-them:before {
+  border-bottom-right-radius: 0.8rem 0.7rem;
+  border-left: 1rem solid #ecf2f7;
+  left: -0.35rem;
+  transform: translate(0, -0.1rem);
+}
+
+p.from-them::after {
+  background-color: #fff;
+  border-bottom-right-radius: 0.5rem;
+  left: 20px;
+  transform: translate(-30px, -2px);
+  width: 10px;
+}
+
+p[class^="from-"].emoji {
+  background: none;
+  font-size: 2.5rem;
+}
+
+p[class^="from-"].emoji::before {
+  content: none;
+}
+

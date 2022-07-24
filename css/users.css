@@ -4,7 +4,9 @@ body{
 
 .user__info__container{
   box-sizing: border-box;
-  background-color: var(--bg03);
+
+  background: rgb(247,248,251);
+  background: linear-gradient(170deg, rgba(247,248,251,1) 0%, rgba(235,241,247,1) 100%);
 
   position: relative;
   display: flex;
