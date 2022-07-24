@@ -56,3 +56,41 @@ onload = async function(){
   //}
   //else {window.location.replace('index.html')}
 }
+
+
+/* CHANGE ICONS ON INPUT CONTAINER */
+const writeInput = document.querySelector('#writeInput');
+const cameraIcon = document.querySelector('#cameraIcon');
+const micIcon = document.querySelector('#micIcon');
+const sendIcon = document.querySelector('#sendIcon');
+
+
+writeInput.addEventListener('input', () =>{
+
+  if (writeInput.value.length > 0) {
+       
+    cameraIcon.classList.add('display--hide')
+    micIcon.classList.add('display--hide')
+    sendIcon.classList.remove('display--hide')
+    
+  }
+  else{
+    cameraIcon.classList.remove('display--hide')
+    micIcon.classList.remove('display--hide')
+    sendIcon.classList.add('display--hide')
+  }
+})
+
+let currentMessage;
+
+/* GET USER MESSAGE */
+sendIcon.addEventListener('click', () =>{
+ 
+  currentMessage = writeInput.value;
+  writeInput.value = ''
+  
+  cameraIcon.classList.remove('display--hide')
+  micIcon.classList.remove('display--hide')
+  sendIcon.classList.add('display--hide')
+
+})

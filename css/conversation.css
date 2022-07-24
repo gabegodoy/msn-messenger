@@ -1,7 +1,6 @@
 .user__info__message{
   background-color: transparent;
   
-  
   color: var(--darkGray);
   font-size: .8rem;
   font-weight: 400;
@@ -59,3 +58,11 @@
   font-weight: 300;
 }
 
+#sendIcon{
+  max-height: 1.5rem;
+  border: solid var(--bg02) 3px;
+  border-radius: 999px;
+
+  padding: .4rem;
+
+}

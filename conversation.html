@@ -29,12 +29,16 @@
     </div>
   </section>
 
-  <section id="messagesContainer" class="messages__container"></section>
+  <section id="messagesContainer" class="messages__container">
+<!--     <p class="message__sent">Hello World</p>
+    <p class="message__received">Hello World</p> -->
+  </section>
   <section class="write__field__container">
     <img src="assets/icons/more--icon.svg" alt="add files input icon">
     <textarea wrap="hard" type="text" id="writeInput" class="write__input" placeholder="Type a message" spellcheck="false"></textarea>
-    <img src="assets/icons/camera--icon.svg" alt="add image input icon">
-    <img src="assets/icons/microphone--icon.svg" alt="add audio input icon">
+    <img id="cameraIcon" src="assets/icons/camera--icon.svg" alt="add image input icon">
+    <img id="micIcon" src="assets/icons/microphone--icon.svg" alt="add audio input icon">
+    <img id="sendIcon" class="display--hide" src="assets/icons/send-message--icon.svg" alt="send image input icon">
   </section>
   <script type="module" src="js/conversation.js"></script>
 </body>
