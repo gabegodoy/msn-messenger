@@ -172,14 +172,20 @@ function emitLogoff(username){
   
 socket.on('login', data => {
   
-  //let currentOnlineUsers = data.slice(1)
-  //console.log(data)
-  //console.log(currentOnlineUsers)
+  let onlineWithoutMe = new Array
+
+  console.log(data)
+   data.forEach(element => {
+    if (element.username !== getUsernameFromURL()){
+      onlineWithoutMe.push(element)
+    }
+  }); 
+ 
   let onlineUsernames = []
   let currentOfflineUsers;
-  
+ 
   clearScreen(onlineUsersList, onlineUsersListTag)
-  printUsers(data, onlineUsersList)
+  printUsers(onlineWithoutMe, onlineUsersList)
   clearScreen(offlineUsersList, offlineUsersListTag)
 
   redirectToConversation()
