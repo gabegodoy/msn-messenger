@@ -311,7 +311,7 @@ categoryArrow.forEach((element) => {
     
     element.classList.toggle('contacts__category__arrow--active')
     
-    for (let i=3; i <= quantityOfItems; i++){
+    for (let i=2; i <= quantityOfItems; i++){
       
       let selectedCategory = element.parentElement.parentElement.parentElement.childNodes[i]
 
