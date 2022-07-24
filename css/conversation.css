@@ -74,6 +74,31 @@ body{
   padding: .4rem;
 }
 
+.lastDayChat{
+  display: flex;
+  justify-content: space-between;
+  width: 85vw;
+  margin: 1rem 0;
+}
+
+.lastDayChat div{
+  width: 30%;
+  display: block;
+
+  color: transparent;
+  text-decoration: line-through;
+  text-decoration-color: var(--bg02);
+}
+
+.lastDayChat div:nth-child(2){
+  color: gray;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 400;
+  width: fit-content;
+}
+
+
 
 .imessage {
   display: flex;
@@ -92,7 +117,7 @@ body{
   padding: 0.5rem .875rem;
   position: relative;
   word-wrap: break-word;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .imessage p::before,
