@@ -45,7 +45,6 @@ onload = async function(){
       emitLogin(user.username, user.firstName, user.lastName, status, user.note)
       setHeader(user)
       printUsers(users, offlineUsersList)
-      console.log(user)
     }
     else {window.location.replace('index.html')}
 }
@@ -152,7 +151,6 @@ function setHeader(user){
   userName.innerHTML = user.firstName + ' ' + user.lastName
   changeStatusColour(userStatus)   
   changeStatusColour(userImage)
-  console.log(user)
 }
 
 
@@ -174,7 +172,6 @@ socket.on('login', data => {
   
   let onlineWithoutMe = new Array
 
-  console.log(data)
    data.forEach(element => {
     if (element.username !== getUsernameFromURL()){
       onlineWithoutMe.push(element)
@@ -202,11 +199,6 @@ socket.on('login', data => {
     createContact(element.firstName, element.lastName, element.status, element.note, offlineUsersList, 'offline', element.username);  
   })
     
-//  console.log(getUsernameFromURL())
-//  console.log(onlineUsernames)
-//  console.log(offlineUsers)
-//  console.log(currentOfflineUsers)
-
 })
 
 socket.on('logoff', data => {
@@ -220,8 +212,6 @@ function emitStatus(username, status){
 }
   
 socket.on('statusChange', data => {
-  console.log(data)
-
   let onlineUsers = redirectToConversation()
 
   onlineUsers.forEach(element => {
@@ -254,8 +244,6 @@ function emitNote(username, note){
 }
   
 socket.on('noteChange', data => {
-  console.log(data.username, data.note)
-
   let onlineUsers = redirectToConversation()
 
   onlineUsers.forEach(element => {
@@ -277,7 +265,6 @@ function printUsers(users, place){
   users.forEach((element) => {
     //send element.status and element.message
     createContact(element.firstName, element.lastName, element.status, element.note, place, 'online',element.username);  
-    console.log(element)
   })
 }
 
@@ -305,7 +292,6 @@ function redirectToConversation (){
 }
 
 let contactUser = redirectToConversation()
-console.log(contactUser)
 
 
 /* ARROW SHOW/HIDE CATEGORY */
