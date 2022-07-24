@@ -49,7 +49,6 @@ onload = async function(){
   let status = 'status'
   let note = 'note'
   // emitOpenChat(user2)
-  emitMessage(user1, user2, 'Olá, '+user2)
 
   const user = await getUserInfo(user2)
   //if (!user.error){
@@ -96,9 +95,10 @@ let currentMessage;
 
 /* GET USER MESSAGE */
 sendIcon.addEventListener('click', () =>{
- 
   currentMessage = writeInput.value;
   writeInput.value = ''
+
+  emitMessage(user1, user2, currentMessage)
   
   cameraIcon.classList.remove('display--hide')
   micIcon.classList.remove('display--hide')
