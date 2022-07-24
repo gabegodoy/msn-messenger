@@ -20,3 +20,41 @@
   transition: .8s transform;
   vertical-align: middle;
 }
+
+.write__field__container{
+  position: absolute;
+  bottom: 0; 
+  padding: 1rem 0;
+  margin-top: 5rem;
+  width: 100vw;
+
+  box-sizing: border-box;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--bg03);
+}
+
+.write__field__container img{
+  max-height: 1.5rem;
+  width: fit-content;
+}
+
+.write__input{
+  border: solid var(--bg02) 1px;
+  border-radius: 20px;
+  padding: .5rem .7rem;
+  width: 50%;
+}
+
+.write__input:focus{
+  outline-color: var(--darkGray);
+}
+
+.write__input::placeholder{
+  color: var(--darkGray);
+  font-weight: 300;
+}
+

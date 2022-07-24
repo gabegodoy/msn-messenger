@@ -22,13 +22,20 @@
   <section class="user__info__container">
     <img id="userImage" src="assets/images/default-user-profile.png" alt="User Profile Picture" class="user__image">
     <div class="user__info">
-      <p id="userName" class="user__info__name">Steve Jobs</p>
+      <p id="userName" class="user__info__name"></p>
       <img id="headerArrow" src="assets/icons/arrow-left.svg" alt=" image of an arrow to get to the previous page" class="header_arrow">
-      <p id="userStatus" class="user__info__status">Online</p>
-      <p id="userMessage" class="user__info__message">Message</p>
+      <p id="userStatus" class="user__info__status status__online">Online</p>
+      <p id="userMessage" class="user__info__message"></p>
     </div>
   </section>
 
+  <section id="messagesContainer" class="messages__container"></section>
+  <section class="write__field__container">
+    <img src="assets/icons/more--icon.svg" alt="add files input icon">
+    <input wrap="hard" type="text" id="writeInput" class="write__input" placeholder="Type a message">
+    <img src="assets/icons/camera--icon.svg" alt="add image input icon">
+    <img src="assets/icons/microphone--icon.svg" alt="add audio input icon">
+  </section>
   
   <script type="module" src="js/conversation.js"></script>
 </body>

@@ -9,7 +9,7 @@ const headerArrow = document.querySelector('#headerArrow');
 
 /* GET BACK ARROW | HEADER */
 headerArrow.addEventListener('click', () => {
-  window.location.replace('users.html')
+  window.location.replace('users.html?username='+user1)
 })
 
 
@@ -32,8 +32,9 @@ function getUserInfo (username){
 
 function setHeader(user){
   userName.innerHTML = user.firstName + ' ' + user.lastName
-  changeStatusColour(userStatus)   
-  changeStatusColour(userImage)
+  userNote.innerHTML = user.note
+  console.log(user)
+
 }
 
 function changeStatusColour (place){
