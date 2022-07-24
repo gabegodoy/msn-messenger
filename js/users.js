@@ -58,7 +58,7 @@ function createContact (name, surname, status, message, nodeParent, id, username
 
   setDiv(nodeParent, 'contact__info__container', id + 'User')
   newDiv.classList.add(username)
-  setImage(newDiv, image)
+  setImage(newDiv, image, status)
   setDiv(newDiv, 'contact__info', id + 'UserInfo')
   setName(newDiv, name, surname)
   setStatus(newDiv, status)
@@ -72,11 +72,12 @@ function setDiv (parent, className, id){
   newDiv.id = id
 } 
 
-function setImage (parent, imageSrc){
+function setImage (parent, imageSrc, id){
   newImg = document.createElement('img')
   parent.appendChild(newImg)
   newImg.classList.add('contact__image')
   newImg.src = imageSrc
+  newImg.classList.add('status__'+id)
 }
 
 function setName (parent, name, surname){
@@ -151,6 +152,7 @@ function setHeader(user){
   userName.innerHTML = user.firstName + ' ' + user.lastName
   changeStatusColour(userStatus)   
   changeStatusColour(userImage)
+  console.log(user)
 }
 
 
@@ -191,7 +193,7 @@ socket.on('login', data => {
   });
  
   currentOfflineUsers.forEach(element => {
-    createContact(element.firstName, element.lastName, 'status', element.note, offlineUsersList, 'offline', element.username);  
+    createContact(element.firstName, element.lastName, element.status, element.note, offlineUsersList, 'offline', element.username);  
   })
     
 //  console.log(getUsernameFromURL())
@@ -213,6 +215,30 @@ function emitStatus(username, status){
   
 socket.on('statusChange', data => {
   console.log(data)
+
+  let onlineUsers = redirectToConversation()
+
+  onlineUsers.forEach(element => {
+    if(data.username === element.classList[1]){
+      //changeStatusColour(element.firstChild)
+
+      element.firstChild.classList.toggle('status__online', data.status == 'online')
+      element.firstChild.classList.toggle('status__busy', data.status == 'busy')
+      element.firstChild.classList.toggle('status__absent', data.status == 'absent')
+      element.firstChild.classList.add('status__'+data.status)
+
+
+
+
+
+      //element.lastChild.lastChild.innerHTML = data.status
+
+      //.lastChild.innerHTML = data.note
+    }    
+  });
+  
+  
+
 })
 
 
@@ -244,7 +270,8 @@ socket.on('noteChange', data => {
 function printUsers(users, place){
   users.forEach((element) => {
     //send element.status and element.message
-    createContact(element.firstName, element.lastName, 'status', element.note, place, 'online',element.username);  
+    createContact(element.firstName, element.lastName, element.status, element.note, place, 'online',element.username);  
+    console.log(element)
   })
 }
 
