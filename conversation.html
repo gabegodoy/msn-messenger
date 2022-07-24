@@ -22,11 +22,31 @@
   <section class="user__info__container">
     <img id="userImage" src="assets/images/default-user-profile.png" alt="User Profile Picture" class="user__image">
     <div class="user__info">
-      <p id="userName" class="user__info__name">Steve Jobs</p>
+      <p id="userName" class="user__info__name"></p>
       <img id="headerArrow" src="assets/icons/arrow-left.svg" alt=" image of an arrow to get to the previous page" class="header_arrow">
-      <p id="userStatus" class="user__info__status">Online</p>
-      <p id="userMessage" class="user__info__message">Message</p>
+      <p id="userStatus" class="user__info__status status__online">Online</p>
+      <p id="userMessage" class="user__info__message"></p>
     </div>
+  </section>
+
+  <section id="messagesContainer" class="imessage">
+
+    <div class="lastDayChat">
+      <div>wwwwwwww</div>
+      <div>Today</div>
+      <div>wwwwwwww</div>
+    </div>
+
+    <p class="from-me">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus eligendi repellendus autem aliquam nam porro, molestias veritatis qui vitae aliquid?</p>
+    <p class="from-them">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, ea voluptates cum ut maxime repellendus quia sapiente laboriosam delectus nostrum quos unde consectetur perferendis excepturi deleniti laborum accusantium! At maxime minima excepturi quos sapiente sed?</p>
+  </section>
+  
+  <section class="write__field__container">
+    <img src="assets/icons/more--icon.svg" alt="add files input icon">
+    <textarea wrap="hard" type="text" id="writeInput" class="write__input" placeholder="Type a message" spellcheck="false"></textarea>
+    <img id="cameraIcon" src="assets/icons/camera--icon.svg" alt="add image input icon">
+    <img id="micIcon" src="assets/icons/microphone--icon.svg" alt="add audio input icon">
+    <img id="sendIcon" class="display--hide" src="assets/icons/send-message--icon.svg" alt="send image input icon">
   </section>
 
   <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>

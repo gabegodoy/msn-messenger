@@ -46,7 +46,6 @@ onload = async function(){
       emitLogin(user.username, user.firstName, user.lastName, status, user.note)
       setHeader(user)
       printUsers(users, offlineUsersList)
-      console.log(user)
     }
     else {window.location.replace('index.html')}
 }
@@ -153,7 +152,6 @@ function setHeader(user){
   userName.innerHTML = user.firstName + ' ' + user.lastName
   changeStatusColour(userStatus)   
   changeStatusColour(userImage)
-  console.log(user)
 }
 
 
@@ -173,14 +171,20 @@ function emitLogoff(username){
   
 socket.on('login', data => {
   
-  //let currentOnlineUsers = data.slice(1)
-  //console.log(data)
-  //console.log(currentOnlineUsers)
+  let onlineWithoutMe = new Array
+
+   data.forEach(element => {
+    if (element.username !== getUsernameFromURL()){
+      onlineWithoutMe.push(element)
+      console.log(element)
+    }
+  }); 
+ 
   let onlineUsernames = []
   let currentOfflineUsers;
-  
+ 
   clearScreen(onlineUsersList, onlineUsersListTag)
-  printUsers(data, onlineUsersList)
+  printUsers(onlineWithoutMe, onlineUsersList)
   clearScreen(offlineUsersList, offlineUsersListTag)
 
   redirectToConversation()
@@ -194,16 +198,12 @@ socket.on('login', data => {
   });
  
   currentOfflineUsers.forEach(element => {
-    createContact(element.firstName, element.lastName, element.status, element.note, offlineUsersList, 'offline', element.username);  
+    createContact(element.firstName, element.lastName, 'offline', element.note, offlineUsersList, 'offline', element.username);  
+    console.log(element)
   })
 
   console.log(data)
     
-//  console.log(getUsernameFromURL())
-//  console.log(onlineUsernames)
-//  console.log(offlineUsers)
-//  console.log(currentOfflineUsers)
-
 })
 
 socket.on('logoff', data => {
@@ -217,8 +217,6 @@ function emitStatus(username, status){
 }
   
 socket.on('statusChange', data => {
-  console.log(data)
-
   let onlineUsers = redirectToConversation()
 
   onlineUsers.forEach(element => {
@@ -251,8 +249,6 @@ function emitNote(username, note){
 }
   
 socket.on('noteChange', data => {
-  console.log(data.username, data.note)
-
   let onlineUsers = redirectToConversation()
 
   onlineUsers.forEach(element => {
@@ -274,7 +270,6 @@ function printUsers(users, place){
   users.forEach((element) => {
     //send element.status and element.message
     createContact(element.firstName, element.lastName, element.status, element.note, place, 'online',element.username);  
-    console.log(element)
   })
 }
 
@@ -302,7 +297,6 @@ function redirectToConversation (){
 }
 
 let contactUser = redirectToConversation()
-console.log(contactUser)
 
 
 /* ARROW SHOW/HIDE CATEGORY */
@@ -314,7 +308,7 @@ categoryArrow.forEach((element) => {
     
     element.classList.toggle('contacts__category__arrow--active')
     
-    for (let i=3; i <= quantityOfItems; i++){
+    for (let i=2; i <= quantityOfItems; i++){
       
       let selectedCategory = element.parentElement.parentElement.parentElement.childNodes[i]
 

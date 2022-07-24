@@ -13,7 +13,7 @@ const headerArrow = document.querySelector('#headerArrow');
 
 /* GET BACK ARROW | HEADER */
 headerArrow.addEventListener('click', () => {
-  window.location.replace('users.html')
+  window.location.replace('users.html?username='+user1)
 })
 
 
@@ -33,6 +33,9 @@ function setHeader(user){
   userName.innerHTML = user.firstName + ' ' + user.lastName
   // changeStatusColour(userStatus)   
   // changeStatusColour(userImage)
+  userNote.innerHTML = user.note
+  console.log(user)
+
 }
 
 // function changeStatusColour (place){
@@ -65,4 +68,40 @@ function emitMessage(sender, recipient, text){
 
 socket.on('message', data => {
   console.log(data)
+})
+/* CHANGE ICONS ON INPUT CONTAINER */
+const writeInput = document.querySelector('#writeInput');
+const cameraIcon = document.querySelector('#cameraIcon');
+const micIcon = document.querySelector('#micIcon');
+const sendIcon = document.querySelector('#sendIcon');
+
+
+writeInput.addEventListener('input', () =>{
+
+  if (writeInput.value.length > 0) {
+       
+    cameraIcon.classList.add('display--hide')
+    micIcon.classList.add('display--hide')
+    sendIcon.classList.remove('display--hide')
+    
+  }
+  else{
+    cameraIcon.classList.remove('display--hide')
+    micIcon.classList.remove('display--hide')
+    sendIcon.classList.add('display--hide')
+  }
+})
+
+let currentMessage;
+
+/* GET USER MESSAGE */
+sendIcon.addEventListener('click', () =>{
+ 
+  currentMessage = writeInput.value;
+  writeInput.value = ''
+  
+  cameraIcon.classList.remove('display--hide')
+  micIcon.classList.remove('display--hide')
+  sendIcon.classList.add('display--hide')
+
 })
