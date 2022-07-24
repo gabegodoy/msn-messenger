@@ -2,8 +2,9 @@
 .home__container{
   box-sizing: border-box;
   width: 100%;
-  height: 100vh;
+  height: fit-content;
   padding: 1.5rem;
+  padding-bottom: 3rem;
   font-family: var(--roboto);
 }
 
