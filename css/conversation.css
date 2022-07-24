@@ -1,0 +1,22 @@
+.user__info__message{
+  background-color: transparent;
+  
+  
+  color: var(--darkGray);
+  font-size: .8rem;
+  font-weight: 400;
+  font-style: italic;
+  
+  margin-top: .5rem;
+  padding: .2rem 0rem;
+  width: 100%;
+}
+
+.header_arrow{
+  cursor: pointer;
+  max-width: 2rem;
+  right: 1.5rem;
+  position: absolute;
+  transition: .8s transform;
+  vertical-align: middle;
+}
