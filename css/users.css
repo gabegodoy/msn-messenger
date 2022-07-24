@@ -158,7 +158,7 @@ body{
 .contact__info__status{
   margin-left: .3rem;
   display: inline-block;
-  color: var(--red); 
+  color: gray; 
   font-size: .8rem;
   font-weight: 300;
 }
@@ -185,7 +185,7 @@ body{
   color: var(--green);
   border-color: var(--green);
   letter-spacing: .8px;
-  font-weight: 900;
+  font-weight: 700;
   -webkit-text-stroke: .2px var(--darkGray);
 }
 
@@ -193,7 +193,7 @@ body{
   color: var(--red);
   border-color: var(--red);
   letter-spacing: .8px;
-  font-weight: 900;
+  font-weight: 700;
   -webkit-text-stroke: .2px var(--darkGray);
 }
 
@@ -201,7 +201,7 @@ body{
   color: var(--yellow);
   border-color: var(--yellow);
   letter-spacing: .8px;
-  font-weight: 900;
+  font-weight: 700;
   -webkit-text-stroke: .2px var(--darkGray);
 }
 
@@ -209,6 +209,6 @@ body{
   color: gray;
   border-color: gray;
   letter-spacing: .8px;
-  font-weight: 900;
+  font-weight: 700;
   -webkit-text-stroke: .2px var(--darkGray);
 }

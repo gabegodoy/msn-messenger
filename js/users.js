@@ -175,6 +175,7 @@ socket.on('login', data => {
    data.forEach(element => {
     if (element.username !== getUsernameFromURL()){
       onlineWithoutMe.push(element)
+      console.log(element)
     }
   }); 
  
@@ -196,7 +197,8 @@ socket.on('login', data => {
   });
  
   currentOfflineUsers.forEach(element => {
-    createContact(element.firstName, element.lastName, element.status, element.note, offlineUsersList, 'offline', element.username);  
+    createContact(element.firstName, element.lastName, 'offline', element.note, offlineUsersList, 'offline', element.username);  
+    console.log(element)
   })
     
 })
