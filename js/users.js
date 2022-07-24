@@ -1,4 +1,5 @@
-var socket = io("https://msn-messenger-server.herokuapp.com");
+import baseUrl from './serverUrl.js'
+var socket = io(baseUrl);
 
 const userName = document.querySelector('#userName');
 const userNote = document.querySelector('#userMessage')
@@ -24,7 +25,7 @@ let currentUserStatus = 'online';
 changeStatusColour(userStatus)   
 
 function getUserInfo (username){
-  return fetch('https://msn-messenger-server.herokuapp.com/users/'+username)
+  return fetch(baseUrl+'/users/'+username)
     .then((reponse) => reponse.json())
     .then(data => data) 
     .catch(e => console.log('Error' + e)) 
@@ -138,7 +139,7 @@ function changeStatusColour (place){
 }
 
 function getUsers(){
-    return fetch('https://msn-messenger-server.herokuapp.com/users')
+    return fetch(baseUrl+'/users')
     .then(response => response.json())
     .then(data => data)
 }
@@ -195,6 +196,8 @@ socket.on('login', data => {
   currentOfflineUsers.forEach(element => {
     createContact(element.firstName, element.lastName, element.status, element.note, offlineUsersList, 'offline', element.username);  
   })
+
+  console.log(data)
     
 //  console.log(getUsernameFromURL())
 //  console.log(onlineUsernames)

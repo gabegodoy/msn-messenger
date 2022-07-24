@@ -1,3 +1,4 @@
+import baseUrl from './serverUrl.js'
 const loginContainer = document.querySelector('#loginContainer')
 let newP = document.createElement('p');
 
@@ -9,7 +10,7 @@ export function validateUser (username, password){
       //cache: 'defaut'
     }
   
-    fetch('https://msn-messenger-server.herokuapp.com/users/authenticate', options)
+    fetch(baseUrl+'/users/authenticate', options)
     
       .then((reponse) => reponse.json())
       .then(data => {

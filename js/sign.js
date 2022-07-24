@@ -1,3 +1,4 @@
+import baseUrl from './serverUrl.js'
 const signFirstName = document.querySelector('#signFirstName');
 const signLastName = document.querySelector('#signLastName');
 const signMail = document.querySelector('#signMail');
@@ -52,7 +53,7 @@ function newUser (username, firstName, lastName, password, email){
     //cache: 'defaut'
   }
   
-  fetch('https://msn-messenger-server.herokuapp.com/users', options)
+  fetch(baseUrl+'/users', options)
   
   .then((reponse) => reponse.json())
   .then(data => {
