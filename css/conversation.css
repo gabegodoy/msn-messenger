@@ -1,5 +1,13 @@
 body{
   background-color: var(--bg01);
+  overflow: visible;
+}
+
+
+.user__info__container{
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
 
 .user__info__message{
@@ -29,11 +37,12 @@ body{
 }
 
 .write__field__container{
-  position: absolute;
+  position: sticky;
   bottom: 0; 
   padding: 1rem 0;
   margin-top: 5rem;
-  width: 100vw;
+  width: 100%;
+
 
   box-sizing: border-box;
   display: flex;

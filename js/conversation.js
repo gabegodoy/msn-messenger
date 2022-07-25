@@ -34,8 +34,6 @@ function setHeader(user){
   // changeStatusColour(userStatus)   
   // changeStatusColour(userImage)
   userNote.innerHTML = user.note
-  console.log(user)
-
 }
 
 // function changeStatusColour (place){
@@ -89,8 +87,6 @@ function newMessage (message, className){
 
 
 socket.on('message', data => {
-  console.log(data)
-  console.log(data.text)
   newMessage(data.text, 'from-them')
 })
 
