@@ -1,6 +1,6 @@
 //import { redirectToConversation } from "./users.js";
 import baseUrl from './serverUrl.js'
-var socket = io(baseUrl);
+var socket = io(baseUrl)
 let user1 = getUsernameFromURL(1)
 let user2 = getUsernameFromURL(2)
 
@@ -46,9 +46,7 @@ function setHeader(user){
 
 
 onload = async function(){
-  let status = 'status'
-  let note = 'note'
-  // emitOpenChat(user2)
+  this.setTimeout(() => { emitOpenChat(user1) }, 2000)
 
   const user = await getUserInfo(user2)
   //if (!user.error){
@@ -57,8 +55,10 @@ onload = async function(){
   //else {window.location.replace('index.html')}
 }
 
-function emitOpenChat(recipient){
-  socket.emit('openChat', { recipient })
+function emitOpenChat(username){
+  // buscar todas as mensagens na api
+  const socketId = socket.id
+  socket.emit('openChat', { username, socketId })
 }
 
 function emitMessage(sender, recipient, text){
@@ -67,6 +67,8 @@ function emitMessage(sender, recipient, text){
 
 socket.on('message', data => {
   console.log(data)
+
+  //Colocar a msg para o enviador e para o recepitor
 })
 /* CHANGE ICONS ON INPUT CONTAINER */
 const writeInput = document.querySelector('#writeInput');
