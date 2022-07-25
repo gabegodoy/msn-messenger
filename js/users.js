@@ -115,6 +115,7 @@ function clearScreen (place, firstChild){
 userNote.addEventListener('keypress', (element) =>{
   if (element.key == 'Enter'){
     currentUserNote = userNote.value;
+    userNote.placeholder = userNote.value
     userNote.value = ''
     emitNote(getUsernameFromURL(), currentUserNote)
   }
@@ -176,7 +177,6 @@ socket.on('login', data => {
    data.forEach(element => {
     if (element.username !== getUsernameFromURL()){
       onlineWithoutMe.push(element)
-      console.log(element)
     }
   }); 
  
@@ -199,10 +199,7 @@ socket.on('login', data => {
  
   currentOfflineUsers.forEach(element => {
     createContact(element.firstName, element.lastName, 'offline', element.note, offlineUsersList, 'offline', element.username);  
-    console.log(element)
   })
-
-  console.log(data)
     
 })
 
