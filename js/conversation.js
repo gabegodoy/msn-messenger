@@ -74,8 +74,24 @@ function emitMessage(sender, recipient, text){
   socket.emit('message', { sender, recipient, text })
 }
 
+
+const messagesContainer = document.querySelector('#messagesContainer');
+let newP = document.createElement('p');
+
+
+function newMessage (message, className){
+  newP = document.createElement('p')
+  messagesContainer.appendChild(newP)
+  newP.classList.add(className)
+  newP.textContent = message
+}
+
+
+
 socket.on('message', data => {
   console.log(data)
+  console.log(data.text)
+  newMessage(data.text, 'from-them')
 })
 
 
@@ -110,7 +126,8 @@ sendIcon.addEventListener('click', () =>{
   writeInput.value = ''
 
   emitMessage(user1, user2, currentMessage)
-  
+  newMessage(currentMessage, 'from-me')
+
   cameraIcon.classList.remove('display--hide')
   micIcon.classList.remove('display--hide')
   sendIcon.classList.add('display--hide')
