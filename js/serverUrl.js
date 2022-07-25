@@ -1,1 +1,1 @@
-export default "https://msn-messenger-server.herokuapp.com/"
+export default "https://msn-messenger-server.herokuapp.com"

@@ -15,6 +15,10 @@ body{
   width: 100%;
 }
 
+.user__image{
+  width: 4rem;
+}
+
 .header_arrow{
   cursor: pointer;
   max-width: 2rem;
