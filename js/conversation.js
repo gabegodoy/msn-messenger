@@ -3,6 +3,7 @@ import baseUrl from './serverUrl.js'
 var socket = io(baseUrl);
 let currentMessage;
 let newP = document.createElement('p');
+let newSpan = document.createElement('span');
 
 const user1 = getUsernameFromURL(1)
 const user2 = getUsernameFromURL(2)
@@ -77,18 +78,78 @@ function emitMessage(sender, recipient, text){
   socket.emit('message', { sender, recipient, text })
 }
 
+
+let day;
+let month; 
+let hour;
+let minutes;
+let time;
+
+
 socket.on('message', data => {
-  newMessage(data.text, 'from-them')
+
+  getTime(data)
+  newMessage(data.text, time, 'from-them')
+
+  console.log(data.created_at)
+  console.log(time)
+
+
 })
+
+function getTime(data){
+  day = data.created_at[8]+data.created_at[9];
+  month = data.created_at[5]+data.created_at[6];
+  hour =  (parseInt(data.created_at[11] + data.created_at[12]) - 3);
+  minutes =  data.created_at[14]+data.created_at[15];
+  time = hour + ':' + minutes
+
+  //PREVENT HOURS (0h, 1h, 2h, 3h)
+  switch (hour) {
+    case -3:
+      hour = 0 
+      break;
+    case -2:
+      hour = 1 
+      break;
+    case -1:
+      hour = 2 
+      break;
+    case 0:
+      hour = 3 
+      break;
+  }
+ 
+  return time
+
+}
+
+function getCurrentTime(){
+  let d = new Date();
+  let hour = d.getHours();
+  let minutes = d.getDate()
+  let time = hour + ':' + minutes
+  //add 0 before minutes
+
+
+  return time
+}
+
 
 
 
 /* CREATE NEW MESSAGE */
-function newMessage (message, className){
+function newMessage (message, time ,className){
   newP = document.createElement('p')
   messagesContainer.appendChild(newP)
   newP.classList.add(className)
   newP.textContent = message
+
+  newSpan = document.createElement('span')
+  newP.appendChild(newSpan)
+  newSpan.classList.add('timeStamp__' + className)
+  newSpan.textContent = time
+
 }
 
 /* GET CURRENT MESSAGE */
@@ -97,7 +158,7 @@ sendIcon.addEventListener('click', () =>{
   writeInput.value = ''
 
   emitMessage(user1, user2, currentMessage)
-  newMessage(currentMessage, 'from-me')
+  newMessage(currentMessage, getCurrentTime() ,'from-me')
   newP.scrollIntoView()
   
   cameraIcon.classList.remove('display--hide')
@@ -112,8 +173,11 @@ function getOldMessages (){
     .then(data =>
     
       data.forEach(element => {
-        if (element.sender === user1) newMessage(element.text, 'from-me')
-        else if (element.sender === user2) newMessage(element.text, 'from-them')
+
+        
+
+        if (element.sender === user1) newMessage(element.text, getTime(element) ,'from-me')
+        else if (element.sender === user2) newMessage(element.text, getTime(element) ,'from-them')
         
         newP.scrollIntoView()        
       })

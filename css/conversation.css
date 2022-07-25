@@ -1,8 +1,7 @@
 body{
   background-color: var(--bg01);
-  overflow: visible;
+  overflow: auto;
 }
-
 
 .user__info__container{
   position: sticky;
@@ -37,10 +36,9 @@ body{
 }
 
 .write__field__container{
-  position: sticky;
+  position: fixed;
   bottom: 0; 
   padding: 1rem 0;
-  margin-top: 5rem;
   width: 100%;
 
 
@@ -118,6 +116,7 @@ body{
   flex-direction: column;
   font-size: 1rem;
   margin: 0 auto 1rem;
+  margin-bottom: 5rem;
 
   padding: 0.5rem 1.8rem;
 }
@@ -126,11 +125,14 @@ body{
 .imessage p {
   border-radius: 1.15rem;
   line-height: 1.25;
+  min-width: 1.5rem;
   max-width: 75%;
   padding: 0.5rem .875rem;
   position: relative;
   word-wrap: break-word;
   font-weight: 400;
+  
+  padding-bottom: 1rem;
 }
 
 .imessage p::before,
@@ -139,6 +141,28 @@ body{
   content: "";
   height: 1rem;
   position: absolute;
+}
+
+.timeStamp__from-me{
+  font-size: .6rem;
+  font-weight: 400;
+
+  position: absolute;
+  margin-top: 1.3rem;
+  right: .8rem;
+  
+  vertical-align: bottom;
+}
+
+.timeStamp__from-them{
+  font-size: .6rem;
+  font-weight: 400;
+
+  position: absolute;
+  margin-top: 1.3rem;
+  right: .8rem;
+  
+  vertical-align: bottom;
 }
 
 p.from-me {
@@ -157,7 +181,8 @@ p.from-me::before {
 }
 
 p.from-me::after {
-  background-color: #fff;
+  content: '19h20';
+  background-color: var(--bg01);
   border-bottom-left-radius: 0.5rem;
   right: -40px;
   transform:translate(-30px, -2px);
@@ -197,7 +222,7 @@ p.from-them:before {
 }
 
 p.from-them::after {
-  background-color: #fff;
+  background-color: var(--bg01);
   border-bottom-right-radius: 0.5rem;
   left: 20px;
   transform: translate(-30px, -2px);
