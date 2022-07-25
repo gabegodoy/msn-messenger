@@ -1,1 +1,1 @@
-export default "http://localhost:3333"
+export default "https://msn-messenger-server.herokuapp.com/"
