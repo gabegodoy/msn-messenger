@@ -1,6 +1,9 @@
 body{
   background-color: var(--bg01);
   overflow: auto;
+
+  font-family: var(--roboto);
+
 }
 
 .user__info__container{
