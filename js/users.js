@@ -167,8 +167,6 @@ function emitLogoff(username){
   window.location.href = '/'
 }
 
-  //EMIT É RESPONSÁVEL POR ENVIAR DADOS // ATUALIZA MUDANÇA NO EVENTO
-  //ON É RESPONSÁVEL POR ESCUTAR
   
 socket.on('login', data => {
   
@@ -206,7 +204,6 @@ socket.on('login', data => {
 socket.on('logoff', data => {
   console.log(data)
 })
-
 
 
 function emitStatus(username, status){
