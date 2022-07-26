@@ -90,6 +90,7 @@ socket.on('message', data => {
 
   getTime(data)
   newMessage(data.text, time, 'from-them')
+  newP.scrollIntoView()
 
   console.log(data.created_at)
   console.log(time)
