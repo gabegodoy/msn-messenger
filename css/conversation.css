@@ -188,7 +188,6 @@ p.from-me::before {
 }
 
 p.from-me::after {
-  content: '19h20';
   background-color: var(--bg01);
   border-bottom-left-radius: 0.5rem;
   right: -40px;
