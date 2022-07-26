@@ -185,20 +185,22 @@ socket.on('login', data => {
   printUsers(onlineWithoutMe, onlineUsersList)
   clearScreen(offlineUsersList, offlineUsersListTag)
 
-  redirectToConversation()
-
+  redirectToConversation('online')
+  
   data.forEach(element => {
     onlineUsernames.push(element.username)
   });
-
+  
   currentOfflineUsers = offlineUsers.filter(function (objeto) { 
     return onlineUsernames.indexOf(objeto.username) === -1 
   });
- 
+  
   currentOfflineUsers.forEach(element => {
     createContact(element.firstName, element.lastName, 'offline', element.note, offlineUsersList, 'offline', element.username);  
   })
-    
+  
+  redirectToConversationOfflineUsers('offline')
+  
 })
 
 socket.on('logoff', data => {
@@ -223,12 +225,6 @@ socket.on('statusChange', data => {
       element.firstChild.classList.add('status__'+data.status)
 
 
-
-
-
-      //element.lastChild.lastChild.innerHTML = data.status
-
-      //.lastChild.innerHTML = data.note
     }    
   });
   
@@ -269,7 +265,8 @@ function printUsers(users, place){
 
 
 
-function redirectToConversation (){
+
+function redirectToConversation (status){
 
   const contactUser = document.querySelectorAll('#onlineUser')
 
@@ -282,7 +279,7 @@ function redirectToConversation (){
       user1 = getUsernameFromURL();
       user2 = element.classList[1];
 
-      window.location.replace('conversation.html?username1='+user1+'&username2='+user2)  
+      window.location.replace('conversation.html?username1='+user1+'&username2='+user2+'&status='+status)  
     })
   })
 
@@ -290,7 +287,55 @@ function redirectToConversation (){
   
 }
 
-let contactUser = redirectToConversation()
+function redirectToConversationOfflineUsers (status){
+
+  const contactUser = document.querySelectorAll('#offlineUser')
+
+  let user1;
+  let user2;
+  
+  contactUser.forEach((element) => {
+    element.addEventListener('click', () => {
+      
+      user1 = getUsernameFromURL();
+      user2 = element.classList[1];
+
+      window.location.replace('conversation.html?username1='+user1+'&username2='+user2+'&status='+status) 
+      
+      
+    })
+  })
+
+  return contactUser
+  
+}
+
+
+
+ 
+
+
+const tryMeHard = document.querySelectorAll('.contact__info__container ')
+
+console.log(tryMeHard)
+  let user1;
+  let user2;
+  
+  tryMeHard.forEach((element) => {
+    element.addEventListener('click', () => {
+      
+      console.log('click')
+
+      //user1 = getUsernameFromURL();
+      //user2 = element.classList[1];
+
+      //window.location.replace('conversation.html?username1='+user1+'&username2='+user2)  
+    })
+  })
+
+
+
+
 
 
 /* ARROW SHOW/HIDE CATEGORY */
