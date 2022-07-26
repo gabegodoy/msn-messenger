@@ -107,16 +107,13 @@ function getTime(data){
   //PREVENT HOURS (0h, 1h, 2h, 3h)
   switch (hour) {
     case -3:
-      hour = 0 
+      hour = 21 
       break;
     case -2:
-      hour = 1 
+      hour = 22 
       break;
     case -1:
-      hour = 2 
-      break;
-    case 0:
-      hour = 3 
+      hour = 23 
       break;
   }
  
@@ -127,7 +124,7 @@ function getTime(data){
 function getCurrentTime(){
   let d = new Date();
   let hour = d.getHours();
-  let minutes = d.getDate()
+  let minutes = d.getMinutes();
   let time = hour + ':' + minutes
   //add 0 before minutes
 
