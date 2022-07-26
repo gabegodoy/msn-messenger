@@ -7,6 +7,7 @@ let newSpan = document.createElement('span');
 
 const user1 = getUsernameFromURL(1)
 const user2 = getUsernameFromURL(2)
+const userCurrentStatus = getUserStatusFromURL()
 
 /* HTML ELEMENTS */
 const userName = document.querySelector('#userName');
@@ -28,6 +29,28 @@ function getUsernameFromURL(n){
   let url = new URL(window.location.href);
   return url.searchParams.get("username"+n);
 }
+/* GET USER STATUS */
+function getUserStatusFromURL(){
+  let url = new URL(window.location.href);
+  return url.searchParams.get("status");
+}
+
+console.log (userCurrentStatus)
+
+/* SET USER2 STATUS */
+function setUser2Status (status){
+  userImage.classList.add('status__' + status)
+  userStatus.classList.add('status__' + status)
+  userStatus.innerHTML = status
+
+} 
+
+
+
+//window.location.replace('conversation.html?username1='+user1+'&username2='+user2+'&status='+status) 
+
+//status__offline
+
 
 function getUserInfo (username){
   return fetch(baseUrl+'/users/'+username)
@@ -54,13 +77,11 @@ headerArrow.addEventListener('click', () => {
 
 /* SCREEN LOAD */
 onload = async function(){
-  let status = 'status'
-  let note = 'note'
   const user = await getUserInfo(user2)
-  
-  // emitOpenChat(user2)
+
   this.setTimeout(() => { emitOpenChat(user1) }, 2000)
   
+  setUser2Status(userCurrentStatus)
   setHeader(user)
   getOldMessages()
 }

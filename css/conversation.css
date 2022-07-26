@@ -25,6 +25,10 @@ body{
   width: 100%;
 }
 
+.user__info__status{
+  text-transform: capitalize;
+}
+
 .user__image{
   width: 4rem;
 }
