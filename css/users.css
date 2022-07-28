@@ -120,6 +120,7 @@ body{
 
 .contact__info__container{
   box-sizing: border-box;
+  cursor: pointer;
   
   display: flex;
   gap: 1rem;
