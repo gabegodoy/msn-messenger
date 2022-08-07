@@ -22,6 +22,23 @@ let lastName;
 let currentUserNote = '';
 let currentUserStatus = 'online';
 
+/* DELETE USER */
+function deleteUser(username){
+
+  const options = {
+    method: 'DELETE',
+    body: JSON.stringify({ username }),
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+    //cache: 'defaut'
+      }
+      
+    fetch(baseUrl + '/users', options)
+      .then((reponse) => reponse.json())
+      .then(data => console.log(data)) 
+      .catch(e => console.log('Error' + e)) 
+}
+
+
 changeStatusColour(userStatus)   
 
 function getUserInfo (username){
@@ -181,10 +198,10 @@ socket.on('login', data => {
   let onlineUsernames = []
   let currentOfflineUsers;
  
+  
   clearScreen(onlineUsersList, onlineUsersListTag)
   printUsers(onlineWithoutMe, onlineUsersList)
   clearScreen(offlineUsersList, offlineUsersListTag)
-
   redirectToConversation('online')
   
   data.forEach(element => {
@@ -317,7 +334,6 @@ function redirectToConversationOfflineUsers (status){
 
 const tryMeHard = document.querySelectorAll('.contact__info__container ')
 
-console.log(tryMeHard)
   let user1;
   let user2;
   
